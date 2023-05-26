@@ -1,4 +1,5 @@
 <?php
+//hàm kết nối database
     function pdo_get_connection() {
         $hostname='localhost';
         $db_name='du_an_mau';
