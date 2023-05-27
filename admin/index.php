@@ -11,23 +11,42 @@ if(isset($_GET['act'])) {
     $act = $_GET['act'];
 
     switch ($act) {
-        case 'addlh':
-            include "loaiHang/add.php";
-            if(isset($_POST['btn-them']) && $_POST['btn-them']) {
+        case 'addLH':
+            
+            if(isset($_POST['btn-add'])) {
                 $sql = 'insert into loai(tenLoai) values(?)';
                 $tenLoai = $_POST['tenLoai'];
                 pdo_execute($sql, $tenLoai);
+                $noti = "Thêm thành công!";
             }
-            break;
-        case 'addhp':
             include "loaiHang/add.php";
-            if(isset($_POST['btn-them']) && $_POST['btn-them']) {
-                $sql = 'insert into loai(tenLoai) values(?)';
-                $tenLoai = $_POST['tenLoai'];
-                pdo_execute($sql, $tenLoai);   
-            }
             break;
-        
+        case 'listLH':
+           
+            $sql = "select * from loai";
+            $danhsachlh = pdo_query($sql);
+             include "loaiHang/list.php";
+            break;
+        case 'updateLH':
+            
+            if(isset($_GET['id'])) {
+                $id = (int)$_GET['id'];
+                $sql = "select * from loai where maLoai = $id";
+                $targetLH = pdo_query_one($sql);
+            }
+            if(isset($_POST['btn-update'])&&$_POST['btn-update']) {
+                $id = (int)$_POST['maLoai'];
+                $tenLoaiMoi= $_POST['tenLoai'];
+                $sql = "update loai set tenLoai = ? where maLoai = ?";
+                pdo_execute($sql,$tenLoaiMoi, $id);
+                $noti = 'cập nhật thành công!';
+            }
+            include "loaiHang/update.php";
+            break;
+        case 'reUpdateLH':
+            
+            include "loaiHang/update.php";
+            break;
         default:
             include "content.php";
             break;

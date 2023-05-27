@@ -7,6 +7,7 @@
     max-width: 1200px;
 }
 
+/* header */
 .title-header h1 {
     background-color: rgb(130, 130, 231);
     color: rgb(0, 0, 0);
@@ -25,9 +26,38 @@
 
 a {
     text-decoration: none;
-    color: antiquewhite;
+    color: rgb(153, 136, 113);
 }
 
 a:hover {
     background-color: rgb(213, 140, 31);
+}
+
+
+
+/* css cho bảng loại hàng */
+#lh {
+    color: aliceblue;
+    padding: 5px;
+    background-color: black;
+}
+
+.list_lh thead {
+    background-color: cadetblue;
+    color: black;
+    padding: 5px;
+    border: 1px solid;
+
+}
+
+.list_lh td {
+    border: 1px solid;
+    padding: 2px;
+    width: 400px;
+
+}
+
+.list_lh tr {
+    display: block;
+    text-align: center;
 }

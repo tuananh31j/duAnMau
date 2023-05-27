@@ -22,7 +22,7 @@
             <nav class="menu-header">
                 <ul>
                     <li><a href="index.php">Trang chủ</a></li>
-                    <li><a href="index.php?act=addlh">Loại hàng</a></li>
+                    <li><a href="index.php?act=addLH">Loại hàng</a></li>
                     <li><a href="#">Hàng hóa</a></li>
                     <li><a href="#">Khách hàng</a></li>
                     <li><a href="#">Bình luận</a></li>
