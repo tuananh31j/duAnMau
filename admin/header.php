@@ -24,8 +24,8 @@
                     <li><a href="index.php">Trang chủ</a></li>
                     <li><a href="index.php?act=addlh">Loại hàng</a></li>
                     <li><a href="#">Hàng hóa</a></li>
-                    <li><a href="#">Khách hàng</a></li>
-                    <li><a href="#">Bình luận</a></li>
+                    <li><a href="index.php?act=dskh">Khách hàng</a></li>
+                    <li><a href="index.php?act=dsbl">Bình luận</a></li>
                     <li><a href="#">Thống kê</a></li>
                 </ul>
             </nav>

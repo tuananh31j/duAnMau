@@ -1,6 +1,9 @@
 <?php
 include "../model/pdo.php";
 include "header.php";
+include "../model/khachhang.php";
+include "../model/binhluan.php";
+
 
 
 
@@ -28,6 +31,15 @@ if(isset($_GET['act'])) {
             }
             break;
         
+            case 'dskh':
+                include "khachhang/list.php"; 
+                $listkhachhang = loadall_khachhang();
+                break;
+
+            case 'dsbl':
+                include "binhluan/list.php"; 
+                $listbinhluan=loadall_binhluan(0);
+                break;
         default:
             include "content.php";
             break;
