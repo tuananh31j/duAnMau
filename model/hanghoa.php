@@ -1,6 +1,6 @@
 <?php
-function insert_hanghoa($tenHangHoa){
-    $sql = "insert into hanghoa(tenHangHoa) values('$tenHangHoa')";
+function insert_hanghoa($tenHangHoa,$donGia,$giamGia,$anh,$ngayNhap,$maLoai,$soLuotXem,$moTa){
+    $sql = "insert into hanghoa(tenHangHoa,donGia,giamGia,anh,ngayNhap,maLoai,soLuotXem,moTa) values('$tenHangHoa','$donGia','$giamGia','$anh','$ngayNhap','$maLoai','$soLuotXem','$moTa')";
     pdo_execute($sql);
 }
 function delete_hanghoa($maHangHoa){
@@ -17,8 +17,14 @@ function loadone_hanghoa($maHangHoa){
     $hh= pdo_query_one($sql);
     return;
 }
-function update_hanghoa($maHangHoa,$tenHangHoa){
-    $sql = "update hanghoa set name='".$tenHangHoa."' where maHangHoa=".$maHangHoa;
+function update_hanghoa($maHangHoa,$tenHangHoa,$donGia,$giamGia,$anh,$ngayNhap,$maLoai,$soLuotXem,$moTa){
+    if($anh!=""){
+        $sql = "update hanghoa set tenHangHoa='".$tenHangHoa."', donGia='".$donGia."', giamGia='".$giamGia."', anh='".$anh."', ngayNhap='".$ngayNhap."', maLoai='".$maLoai."', soLuotXem='".$soLuotXem."', moTa='".$moTa."' where maHangHoa=".$maHangHoa;
+    }
+    else{
+        $sql = "update hanghoa set tenHangHoa='".$tenHangHoa."', donGia='".$donGia."', giamGia='".$giamGia."', ngayNhap='".$ngayNhap."', maLoai='".$maLoai."', soLuotXem='".$soLuotXem."', moTa='".$moTa."' where maHangHoa=".$maHangHoa;
+    }
+    
     pdo_execute($sql);
 }
 

@@ -37,8 +37,19 @@ if(isset($_GET['act'])) {
             break;
         case 'addhh':
             if(isset($_POST['themmoi'])&&($_POST['themmoi'])){
-                $tenHangHoa = $_POST['tenHangHoa'];
-                insert_hanghoa($tenHangHoa);
+                $tenHangHoa = $_POST['tenhh'];
+                $donGia = $_POST['dongia'];
+                $giamGia = $_POST['giamgia'];
+                $ngayNhap = $_POST['ngaynhap'];
+                $maLoai = $_POST['maloai'];
+                $soLuotXem = $_POST['soluotxem'];
+                $moTa = $_POST['mota'];
+                $filename = $_FILES['anh']['name'];
+                $anh = "upload/";
+                $file = $anh . basename($_FILES["anh"]["name"]);
+                move_uploaded_file($_FILES["anh"]["tmp_name"], $file);
+
+                insert_hanghoa($tenHangHoa,$donGia,$giamGia,$anh,$ngayNhap,$maLoai,$soLuotXem,$moTa);
                 $thongba0 = "Thêm Thành Công";
             }
             include "hanghoa/add.php";
@@ -47,7 +58,7 @@ if(isset($_GET['act'])) {
             if(isset($_GET['maHangHoa']) && ($_GET['maHangHoa']>0)){
                 delete_hanghoa($_GET['maHangHoa']);
             }
-            $listhanghoa = loadall_hanghoa();
+            $listhanghoa = loadall_hanghoa("",0);
             include "hanghoa/list.php";
             break;
 
@@ -61,7 +72,16 @@ if(isset($_GET['act'])) {
             if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
                 $tenHangHoa=$_POST['tenHangHoa'];
                 $maHangHoa = $_POST['maHangHoa'];
-                update_hanghoa($maHangHoa,$tenHangHoa);
+                $giamGia = $_POST['giamgia'];
+                $ngayNhap = $_POST['ngaynhap'];
+                $maLoai = $_POST['maloai'];
+                $soLuotXem = $_POST['soluotxem'];
+                $moTa = $_POST['mota'];
+                $filename = $_FILES['anh']['name'];
+                $anh = "upload/";
+                $file = $anh . basename($_FILES["anh"]["name"]);
+                move_uploaded_file($_FILES["anh"]["tmp_name"], $file);
+                update_hanghoa($maHangHoa,$tenHangHoa,$donGia,$giamGia,$anh,$ngayNhap,$maLoai,$soLuotXem,$moTa);
                 $thongbao = "Cập Nhật Thành Công";
             }
             $listhanghoa = loadall_hanghoa();
