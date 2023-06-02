@@ -10,9 +10,7 @@
 </head>
 
 <body>
-    <div class="title">
-        <h3>Bình luận</h3>
-    </div>
+
     <nav class="nav flex-column">
         <ul>
             <li class="nav-link active" aria-current="page"><img id="cmt-img" src="img/t1.jpg" alt="">
@@ -23,6 +21,11 @@
         </ul>
 
     </nav>
+    <div>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+
+        </form>
+    </div>
 </body>
 
 </html>

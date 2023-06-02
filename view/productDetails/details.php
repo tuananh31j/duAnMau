@@ -23,6 +23,9 @@
     </main>
     <!-- bình luận -->
     <main class="cmt">
+        <div class="title">
+            <h3>Bình luận</h3>
+        </div>
         <iframe src="comment/cmt.php" frameborder="0"></iframe>
     </main>
 

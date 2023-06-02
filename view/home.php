@@ -15,19 +15,49 @@
 
           <div class="d-flex align-items-start">
               <!-- danh mục -->
-              <div class="nav flex-column nav-pills me-3" id="menu2" role="tablist" aria-orientation="vertical">
-                  <a href="index.php?act=listLH">Mới nhất</a>
+              <div>
+                  <!-- account -->
+                  <div>
+                      <div class="acsount-box">
+                          <h3>Tài Khoản</h3>
+                          <?php
+                         if(isset($_SESSION)) {
+                            
+                         
+                         ?>
+                          <h1>hello</h1>
+                          <?php }else{ ?>
+                          <div>
+                              <form action="index.php?act=dangNhap" method="post">
+                                  <label for="username">Tên tài khoản</label>
+                                  <input type="text" name="tenKhachHang">
+                                  <label for="matKhau">Tên tài khoản</label>
+                                  <input type="text" name="matKhau">
+                                  <input type="submit" name="btn-dN" value="Đăng nhập">
+                              </form>
+                              <a href="index.php?act=dangKy">Đăng ký tài khoản</a><br><br>
+                              <a href="index.php?act=quenMatKhau">Quên mật khẩu</a>
+                          </div>
+                          <?php } ?>
+                      </div>
+                  </div>
 
-                  <?php
+                  <div class="nav flex-column nav-pills me-3" id="menu2" role="tablist" aria-orientation="vertical">
+                      <a href="index.php?act=listLH">Mới nhất</a>
+
+                      <?php
                         foreach($dataLH as $lH) {
 
                         
                         ?>
-                  <a href="index.php?act=listLH&id=<?php echo $lH['maLoai'] ?>"><?php echo $lH['tenLoai'] ?></a>
-                  <?php
+                      <a href="index.php?act=listLH&id=<?php echo $lH['maLoai'] ?>"><?php echo $lH['tenLoai'] ?></a>
+                      <?php
                         }
                     ?>
+                  </div>
+
               </div>
+
               <!-- product -->
               <div>
                   <!-- slideshow -->
