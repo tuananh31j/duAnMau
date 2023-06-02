@@ -1,0 +1,25 @@
+<?php
+function insert_hanghoa($tenHangHoa){
+    $sql = "insert into hanghoa(tenHangHoa) values('$tenHangHoa')";
+    pdo_execute($sql);
+}
+function delete_hanghoa($maHangHoa){
+    $sql = "delete from hanghoa where maHangHoa=".$maHangHoa;
+    pdo_execute($sql);
+}
+function loadall_hanghoa(){
+    $sql = "select * from hanghoa order by maHangHoa desc";
+    $listhanghoa = pdo_query($sql);
+    return $listhanghoa;
+}
+function loadone_hanghoa($maHangHoa){
+    $sql = "select * from hanghoa where maHangHoa=".$maHangHoa;
+    $hh= pdo_query_one($sql);
+    return;
+}
+function update_hanghoa($maHangHoa,$tenHangHoa){
+    $sql = "update hanghoa set name='".$tenHangHoa."' where maHangHoa=".$maHangHoa;
+    pdo_execute($sql);
+}
+
+?>
