@@ -56,18 +56,18 @@ a {
     text-decoration: none;
 }
 
-#cmt-img {
-    width: 4%;
+.nav-link .cmt-img {
+    width: 5% !important;
     border-radius: 80px;
 }
 
-#cmt-per {
+.cmt-per {
     color: black;
     font-weight: 700;
 
 }
 
-#cmt-content {
+.cmt-content {
     font-weight: 200;
 }
 
@@ -90,4 +90,19 @@ a {
 
 #img-detail {
     width: 630px;
+}
+
+.user p {
+    width: 200px !important;
+    border: 1px solid !important;
+    height: 200px !important;
+    color: black;
+}
+
+#user-img {
+    width: 1px !important;
+}
+
+#noti {
+    color: red;
 }

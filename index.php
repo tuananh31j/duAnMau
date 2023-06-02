@@ -89,6 +89,30 @@ if(isset($_GET['act'])) {
             
             include 'view/account/dangKy.php';
             break;
+            case 'dangXuat':
+                
+                include 'view/account/dangXuat.php';
+                header("location: index.php");
+                break;
+            
+            case 'userUpdate':
+                if(isset($_POST['btn-userUpdate'])) {
+                    $maKhachHang = $_SESSION['user']['maKhachHang'];
+                    $tenKhachHang = $_POST['tenKhachHang'];
+                    $matKhau = $_POST['matKhau'];
+                    $anh = $_FILES['anh']['name'];
+                    $email = $_POST['email'];
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                    $_SESSION['user']['anh'] = $anh;
+
+                    $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ? where maKhachHang = ?";
+                    pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
+                    header("location: index.php");
+                }
+            
+                include 'view/account/userUpdate.php';
+                
+                break;
             
     }
 }else{

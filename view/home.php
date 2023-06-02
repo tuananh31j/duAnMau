@@ -22,19 +22,41 @@
                           <h3>Tài Khoản</h3>
                           <?php
                          if(isset($_SESSION['user'])) {
-                            
+                            $userImage = $_SESSION['user']['anh'];
+                            $userName = $_SESSION['user']['tenKhachHang'];
                          
                          ?>
-                          <a href="index.php?act=quenMatKhau">Quên mật khẩu</a><br><br>
-                          <a href="admin/">Trang Quản trị</a><br><br>
-                          <a href="">Đăng xuất</a>
-                          <?php }else{ ?>
                           <div>
+                              <div class="user">
+                                  <div>
+                                      <p>Xin chào! <?php echo $userName ?></p>
+                                  </div>
+                                  <a href="index.php?act=userUpdate">
+                                      <img id="user-img" src="img/<?php echo $userImage ?>" alt="">
+
+                                      <p>Chỉnh sửa thông tin</p>
+                                  </a>
+
+
+
+                              </div>
+
+                              <a href="index.php?act=quenMatKhau">Quên mật khẩu</a><br><br>
+                              <a href="admin/">Trang Quản trị</a><br><br>
+                              <a href="index.php?act=dangXuat">Đăng xuất</a>
+                          </div>
+
+                          <?php }else{ ?>
+                          <div class="form-sign">
+                              <div class="user">
+                                  <p></p>
+
+                              </div>
                               <form action="index.php?act=dangNhap" method="post">
                                   <label for="username">Tên tài khoản</label>
                                   <input type="text" name="tenKhachHang">
-                                  <label for="password">Tên tài khoản</label>
-                                  <input type="text" name="matKhau">
+                                  <label for="matKhau">Tên tài khoản</label>
+                                  <input type="password" name="matKhau">
                                   <input type="submit" name="btn-dN" value="Đăng nhập">
                               </form>
                               <a href="index.php?act=dangKy">Đăng ký tài khoản</a><br><br>

@@ -18,6 +18,7 @@
             <div class="title-header">
                 <h1>Trang quản trị</h1>
             </div>
+            <div><a href="../index.php">Trang chủ</a></div>
             <!-- menu -->
             <nav class="menu-header">
                 <ul>

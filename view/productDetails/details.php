@@ -26,7 +26,9 @@
         <div class="title">
             <h3>Bình luận</h3>
         </div>
-        <iframe src="comment/cmt.php" frameborder="0"></iframe>
+        <iframe src="view/comment/cmt.php?idHH=<?php echo $targetSP_id['maHangHoa'] ?>" width="800px"
+            frameborder="0"></iframe>
+
     </main>
 
 
