@@ -21,17 +21,19 @@
                       <div class="acsount-box">
                           <h3>Tài Khoản</h3>
                           <?php
-                         if(isset($_SESSION)) {
+                         if(isset($_SESSION['user'])) {
                             
                          
                          ?>
-                          <h1>hello</h1>
+                          <a href="index.php?act=quenMatKhau">Quên mật khẩu</a><br><br>
+                          <a href="admin/">Trang Quản trị</a><br><br>
+                          <a href="">Đăng xuất</a>
                           <?php }else{ ?>
                           <div>
                               <form action="index.php?act=dangNhap" method="post">
                                   <label for="username">Tên tài khoản</label>
                                   <input type="text" name="tenKhachHang">
-                                  <label for="matKhau">Tên tài khoản</label>
+                                  <label for="password">Tên tài khoản</label>
                                   <input type="text" name="matKhau">
                                   <input type="submit" name="btn-dN" value="Đăng nhập">
                               </form>

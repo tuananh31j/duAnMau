@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "model/pdo.php";
 
 include "view/header.php";
@@ -72,11 +73,16 @@ if(isset($_GET['act'])) {
                 $tenKhachHang= $_POST['tenKhachHang'];
                 $matKhau= $_POST['matKhau'];
 
-                $sql = 'insert into khachHang(email, tenKhachhang, matKhau) values(?, ?, ?)';
+                $sql = 'select * from khachHang where tenKhachHang =? and matKhau = ?';
 
-                pdo_execute($sql,$email,$tenKhachHang,$matKhau);
+                $checkDN =  pdo_query_one($sql,$tenKhachHang,$matKhau);
+                if(is_array($checkDN)) {
+                    $_SESSION['user'] = $checkDN;
+                    header("location: index.php");
+                    $thongbao = 'Đăng ký thành công';
+                }
 
-                $thongbao = 'Đăng ký thành công';
+                
             
                 
             }
