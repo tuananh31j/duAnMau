@@ -99,6 +99,11 @@ a {
     color: black;
 }
 
+.user p {
+    margin-left: 20px !important;
+    margin-top: 20px !important;
+}
+
 #user-img {
     width: 70% !important;
     border-radius: 1000px;

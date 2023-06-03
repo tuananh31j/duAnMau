@@ -1,8 +1,8 @@
 <?php
-include "model/pdo.php";
-include "model/hangHoa.php";
-include "model/loaiHang.php";
-include "model/khachHang.php";
+include "../model/pdo.php";
+include "../model/hangHoa.php";
+include "../model/loaiHang.php";
+include "../model/khachHang.php";
 include "header.php";
 
 

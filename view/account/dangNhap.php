@@ -1,5 +1,7 @@
 <div class="form-sign">
-    <div class="user"></div>
+    <div class="user">
+        <P>*chưa đăng nhập*</P>
+    </div>
     <form action="index.php?act=dangNhap" method="post">
         <label for="username">Tên tài khoản</label>
         <input type="text" name="tenKhachHang">
