@@ -84,8 +84,7 @@
                                           alt="<?php echo $product['tenHangHoa']?>">
                                       <div class="card-body">
                                           <h5 class="card-title"><?php echo $product['tenHangHoa']?> |<span
-                                                  id="sale">Giảm
-                                                  giá:
+                                                  id="sale">sale:
                                                   <?php echo $product['giamGia'] ?></span></h5>
                                           <p class="card-text"><?php echo $product['moTa']?></p>
                                       </div>
