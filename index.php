@@ -1,7 +1,9 @@
 <?php
 session_start();
 include "model/pdo.php";
-
+include "model/hangHoa.php";
+include "model/loaiHang.php";
+include "model/khachHang.php";
 include "view/header.php";
 
 
@@ -19,15 +21,12 @@ if(isset($_GET['act'])) {
             include "view/contact/contact.php";
             break;
         case 'listLH':
-            $sqlLH = "select * from loai";
-            $sqlSP = "select * from hangHoa";
-            $dataLH = pdo_query($sqlLH);
-            $targetSP = pdo_query($sqlSP);
+            $dataLH= listLoaiHang();
+            $targetSP = list_hang_hoa();
 
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $sql = "select * from hangHoa where maLoai = ?";
-                $targetSP = pdo_query($sql, $id);
+                $targetSP = list_hang_hoa_loai($id);
             }
             
             include "view/listLH/listLH.php";
@@ -35,15 +34,12 @@ if(isset($_GET['act'])) {
 
         // Trang chi tiết sản phẩm
         case 'detailsSP':
-            $sqlLH = "select * from loai";
-            
-            $dataLH = pdo_query($sqlLH);
+            $dataLH= listLoaiHang();
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $sql = "select * from hangHoa where maHangHoa = ?";
-                $sqls = "select * from hangHoa where maLoai = ?";
-                $targetSP = pdo_query($sqls, $id);
-                $targetSP_id = pdo_query_one($sql, $id);
+                
+                $targetSP = list_hang_hoa_loai($id);
+                $targetSP_id = list_hang_hoa_id($id);
             }
             include "view/productDetails/details.php";
             break;
@@ -54,48 +50,37 @@ if(isset($_GET['act'])) {
                 $email= $_POST['email'];
                 $tenKhachHang= $_POST['tenKhachHang'];
                 $matKhau= $_POST['matKhau'];
-
-                $sql = 'insert into khachHang(email, tenKhachhang, matKhau) values(?, ?, ?)';
-
-                pdo_execute($sql,$email,$tenKhachHang,$matKhau);
+                addKhachHang($email,$tenKhachHang,$matKhau);
 
                 $thongbao = 'Đăng ký thành công';
-            
-                
             }
-            
             include 'view/account/dangKy.php';
             break;
-            // Trang đăng nhập tài khoản
+            
+        // Trang đăng nhập tài khoản
         case 'dangNhap':
             if(isset($_POST['btn-dN'])) {
                
                 $tenKhachHang= $_POST['tenKhachHang'];
                 $matKhau= $_POST['matKhau'];
-
-                $sql = 'select * from khachHang where tenKhachHang =? and matKhau = ?';
-
-                $checkDN =  pdo_query_one($sql,$tenKhachHang,$matKhau);
+                $checkDN =  checkUser($tenKhachHang,$matKhau);
                 if(is_array($checkDN)) {
                     $_SESSION['user'] = $checkDN;
                     header("location: index.php");
                     $thongbao = 'Đăng ký thành công';
                 }
-
-                
-            
-                
             }
-            
             include 'view/account/dangKy.php';
             break;
-            case 'dangXuat':
-                
+        
+        //Trang đăng xuất
+        case 'dangXuat':  
                 include 'view/account/dangXuat.php';
                 header("location: index.php");
                 break;
             
-            case 'userUpdate':
+        //trang chỉnh sửa thông tin người dùng
+        case 'userUpdate':
                 if(isset($_POST['btn-userUpdate'])) {
                     $maKhachHang = $_SESSION['user']['maKhachHang'];
                     $tenKhachHang = $_POST['tenKhachHang'];
@@ -104,23 +89,18 @@ if(isset($_GET['act'])) {
                     $email = $_POST['email'];
                     move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
                     $_SESSION['user']['anh'] = $anh;
-
-                    $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ? where maKhachHang = ?";
-                    pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
+                    updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
                     header("location: index.php");
                 }
-            
                 include 'view/account/userUpdate.php';
                 
                 break;
             
     }
 }else{
-    $sql = "select * from hangHoa order by maHangHoa desc";
-    $newProduct = pdo_query($sql);
-    $sqlLH = "select * from loai";
     
-    $dataLH = pdo_query($sqlLH);
+    $newProduct = listHangHoaMoiNhat();
+    $dataLH = listLoaiHang();
     include "view/home.php";
 }
 
