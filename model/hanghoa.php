@@ -14,7 +14,7 @@ function loadall_hanghoa(){
 }
 function loadone_hanghoa($maHangHoa){
     $sql = "select * from hanghoa where maHangHoa=".$maHangHoa;
-    $hh= pdo_query_one($sql);
+    $dm= pdo_query_one($sql);
     return;
 }
 function update_hanghoa($maHangHoa,$tenHangHoa,$donGia,$giamGia,$anh,$ngayNhap,$maLoai,$soLuotXem,$moTa){

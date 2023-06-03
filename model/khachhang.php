@@ -5,8 +5,8 @@ function loadall_khachhang(){
     return $listtaikhoan;
 }
 
-function insert_taikhoan($email,$tenKhachhang,$matKhau){
-    $sql="insert into khachhang(email,tenKhachhang,matKhau) values('$email','$tenKhachhang','$matKhau')";
+function insert_khachhang($tenKhachHang,$matKhau,$email,$diaChi,$vaiTro){
+    $sql="insert into khachhang(tenKhachhang,matKhau,email,diaChi,vaiTro) values('$tenKhachHang','$matKhau','$email','$diaChi','$vaiTro')";
     pdo_execute($sql);
 }
 function checktenkhachhang($tenKhachhang,$matKhau){
@@ -21,8 +21,12 @@ function checkemail($email){
     return $sp;
 }
 
-function update_khachhang($maKhachhang,$tenKhachhang,$matKhau,$email,$diaChi){
-    $sql = "update khachhang set tenKhach$tenKhachhang='".$tenKhachhang."', ma$matKhau='".$matKhau."', email='".$email."', diaChi='".$diaChi."' where maKhachhang=".$maKhachhang;
+function update_khachhang($maKhachHang,$tenKhachHang,$matKhau,$email,$diaChi,$vaiTro){
+    $sql = "update khachhang set tenKhachHang='".$tenKhachHang."', matKhau='".$matKhau."', email='".$email."', diaChi='".$diaChi."',  vaiTro='".$vaiTro."' where maKhachHang=".$maKhachHang;
+    pdo_execute($sql);
+}
+function delete_khachhang($maKhachHang){
+    $sql = "delete from khachhang where maKhachHang=".$maKhachHang;
     pdo_execute($sql);
 }
 ?>

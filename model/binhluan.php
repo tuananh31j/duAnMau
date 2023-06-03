@@ -10,4 +10,8 @@ function loadall_binhluan($maHangHoa){
     $listbl = pdo_query($sql);
     return $listbl;
 }
+function delete_binhluan($maBinhLuan){
+    $sql = "delete from binhluan where maBinhLuan=".$maBinhLuan;
+    pdo_execute($sql);
+}
 ?>
