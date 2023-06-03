@@ -55,7 +55,8 @@
                             <div class="card-img-overlay">
                                 <h5 class="card-title"><?php echo $sp['tenHangHoa'] ?></h5>
                                 <p class="card-text"><?php echo $sp['moTa'] ?></p>
-                                <p class="card-text"><small><?php echo $sp['ngayNhap'] ?></small></p>
+                                <p class="card-text"><small><?php echo $sp['ngayNhap'] ?>|<span id="sale">sale:
+                                            <?php echo $sP['giamGia'] ?></span></small></p>
                             </div>
                         </div>
                     </div>

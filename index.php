@@ -95,21 +95,28 @@ if(isset($_GET['act'])) {
                 include 'view/account/userUpdate.php';
                 
                 break;
-                case 'forgotPass':
-                    if(isset($_POST['btn-userUpdate'])) {
-                        $maKhachHang = $_SESSION['user']['maKhachHang'];
-                        $tenKhachHang = $_POST['tenKhachHang'];
-                        $matKhau = $_POST['matKhau'];
-                        $anh = $_FILES['anh']['name'];
-                        $email = $_POST['email'];
-                        move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
-                        $_SESSION['user']['anh'] = $anh;
-                        updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
-                        header("location: index.php");
-                    }
-                    include 'view/account/userUpdate.php';
+
+        //Trang quên mật khẩu
+        case 'forgotPass':
+            if(isset($_POST['btn-getPass'])) {
+                
+                $tenKhachHang = $_POST['tenKhachHang'];
+               
+                
+                $email = $_POST['email'];
+                $targetKH = getPass($tenKhachHang,$email);
+                if(is_array($targetKH)) {
+                    $yourPass = $targetKH['matKhau'];
                     
-                    break;  
+                }else{
+                    $yourPass = "Thông tin không hợp lệ";
+                }
+                
+               
+            }
+            include 'view/account/forgotPass.php';
+            
+            break;  
     }
 }else{
     

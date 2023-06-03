@@ -39,12 +39,13 @@
                                     <img src="img/<?php echo $sP['anh'] ?>" class="card-img-top"
                                         alt="<?php echo $sP['tenHangHoa'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?php echo $sP['tenHangHoa'] ?> |<span id="sale">sale:
-                                                <?php echo $sP['giamGia'] ?></span></h5>
+                                        <h5 class="card-title"><?php echo $sP['tenHangHoa'] ?> </h5>
                                         <p class="card-text"><?php echo $sP['moTa'] ?></p>
                                     </div>
                                     <div class="card-footer">
-                                        <small class="text-body-secondary"><?php echo $sP['ngayNhap'] ?></small>
+                                        <small class="text-body-secondary"><?php echo $sP['ngayNhap'] ?>|<span
+                                                id="sale">sale:
+                                                <?php echo $sP['giamGia'] ?></span></small>
                                     </div>
                                 </div>
 

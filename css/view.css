@@ -44,10 +44,11 @@ footer {
     background-color: brown;
     border: 5px solid yellow;
     border-radius: 30px;
-    padding: 2px;
+    padding: 10px;
     color: antiquewhite;
     margin-left: 2px;
-    font-size: 10px;
+    font-size: 16px;
+    width: 100px;
 
 }
 
@@ -75,7 +76,7 @@ a {
     color: black;
     width: 200px;
     margin: 10px 20px;
-    padding: 5px;
+    padding: 10px;
     border-radius: 4px;
 }
 
@@ -111,4 +112,22 @@ a {
 
 #noti {
     color: red;
+}
+
+.form-sign {
+    border: 1px solid;
+    width: 250px;
+    margin: 10px 0px;
+    padding: 5px;
+    border-radius: 4px;
+
+}
+
+a:hover {
+    background-color: chocolate;
+}
+
+.form-sign div {
+    margin: 10px 10px;
+    margin-right: 10px;
 }

@@ -9,6 +9,11 @@ function checkUser($tenKhachHang,$matKhau) {
     return pdo_query_one($sql,$tenKhachHang,$matKhau);
 }
 
+function getPass($tenKhachHang,$email) {
+    $sql = 'select * from khachHang where tenKhachHang =? and email = ?';
+    return pdo_query_one($sql,$tenKhachHang,$email);
+}
+
 function updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang) {
     $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ? where maKhachHang = ?";
     pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email, $maKhachHang);

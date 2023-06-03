@@ -7,27 +7,22 @@
                 <input type="email" name="email">
             </div>
             <div>
-                <label for="tenKhachHang">tenKhachHang</label>
+                <label for="tenKhachHang">Tên người dùng</label>
                 <input type="text" name="tenKhachHang">
             </div>
-            <div>
-                <label for="matKhau">matKhau</label>
-                <input type="password" name="matKhau">
-            </div>
-            <input onclick="noti()" type="submit" name="btn-dk" value="Đăng ký">
+
+            <input type="submit" name="btn-getPass" value="Gửi">
             <input type="reset" value="Nhập lại">
         </form>
         <?php 
-        if(isset($thongbao)&& $thongbao!='' && isset($_POST['btn-dk'])) {
-            echo $thongbao;
-            header("location: index.php");
+        if(isset($yourPass)&& $yourPass!='') {
+            echo $yourPass;
+            
             
         }
          ?>
     </div>
 </div>
 <script>
-function noti() {
-    alert('đăng ký thành công! Quay trở lại đăng nhập?')
-}
+
 </script>

@@ -83,13 +83,13 @@
                                       <img src="img/<?php echo $product['anh']?>" class="card-img-top"
                                           alt="<?php echo $product['tenHangHoa']?>">
                                       <div class="card-body">
-                                          <h5 class="card-title"><?php echo $product['tenHangHoa']?> |<span
-                                                  id="sale">sale:
-                                                  <?php echo $product['giamGia'] ?></span></h5>
+                                          <h5 class="card-title"><?php echo $product['tenHangHoa']?></h5>
                                           <p class="card-text"><?php echo $product['moTa']?></p>
                                       </div>
                                       <div class="card-footer">
-                                          <small class="text-body-secondary"><?php echo $product['ngayNhap']?></small>
+                                          <small class="text-body-secondary"><?php echo $product['ngayNhap']?>|<span
+                                                  id="sale">sale:
+                                                  <?php echo $product['giamGia'] ?></span></small>
                                       </div>
                                   </div>
                               </div>
@@ -125,7 +125,9 @@
                                       <p class="card-text"><?php echo $product['moTa']?></p>
                                   </div>
                                   <div class="card-footer">
-                                      <small class="text-body-secondary"><?php echo $product['ngayNhap']?></small>
+                                      <small class="text-body-secondary"><?php echo $product['ngayNhap']?>|<span
+                                              id="sale">sale:
+                                              <?php echo $product['giamGia'] ?></span></small>
                                   </div>
                               </div>
                           </div>
