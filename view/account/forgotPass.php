@@ -15,8 +15,9 @@
             <input type="reset" value="Nhập lại">
         </form>
         <?php 
+         
         if(isset($yourPass)&& $yourPass!='') {
-            echo $yourPass;
+            echo '<p id="noti" >Thông báo: ', "<span>",$yourPass,"</span></p>";
             
             
         }

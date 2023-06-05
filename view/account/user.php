@@ -1,22 +1,33 @@
 <div>
-    <div class="">
+    <div class="text-center">
 
-        <p>Xin chào! <?php echo $_SESSION['user']['tenKhachHang'] ?></p>
 
-        <a href="index.php?act=userUpdate">
-            <img id="user-img" src="img/<?php echo $_SESSION['user']['anh'] ?>" alt="">
 
-            <p>Chỉnh sửa thông tin</p>
+        <a class="" href="index.php?act=userUpdate">
+            <p>Xin chào! <?php echo $_SESSION['user']['tenKhachHang'] ?></p>
+            <img class="text-center" id="user-img" src="img/<?php echo $_SESSION['user']['anh'] ?>" alt="">
+
+
         </a>
 
 
 
     </div>
 
-    <a href="index.php?act=quenMatKhau">Quên mật khẩu</a><br><br>
-    <?php if($_SESSION['user']['vaiTro'] == 1) {
+
+    <div class="nav flex-column nav-pills me-3" class="acchide" class="acsount-box " id="menu2" role="tablist"
+        aria-orientation="vertical">
+
+        <a href="index.php?act=userUpdate">Chỉnh sửa thông tin</a>
+        <a href="index.php?act=forgotPass">Quên mật khẩu</a>
+        <?php if($_SESSION['user']['vaiTro'] == 1) {
         ?>
-    <a href="admin/">Trang Quản trị</a><br><br>
-    <?php } ?>
-    <a href="index.php?act=dangXuat">Đăng xuất</a>
+        <a href="admin/">Trang Quản trị</a>
+        <?php } ?>
+        <a href="index.php?act=dangXuat">Đăng xuất</a>
+    </div>
+
+
+
+
 </div>

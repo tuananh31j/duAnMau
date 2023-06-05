@@ -13,10 +13,22 @@ function listLoaiHang() {
     return pdo_query($sql);
 }
 
+//danh sách tên loại hàng
+function list_tenLoai() {
+    $sql = "select tenLoai from loai";
+    return pdo_query($sql);
+}
 
-//chon loai hang theo id
+
+//chon loại hang theo id
 function selectLoaiHang_id($id) {
     $sql = "select * from loai where maLoai = $id";
+    return pdo_query_one($sql);
+}
+
+//tìm loại hang theo tên
+function selectLoaiHang_name($name) {
+    $sql = "select * from loai where tenLoai = $name";
     return pdo_query_one($sql);
 }
 
@@ -31,7 +43,7 @@ function updateLoaiHang($tenLoaiMoi, $id) {
 
 //xoa loai hang
 function deleteLoaiHang($id) {
-    $sql = "delete from loai where maLoai = ?";
-    pdo_execute($sql, $id);
+    $sql = "delete from loai where maLoai = $id";
+    pdo_execute($sql);
 }
 ?>

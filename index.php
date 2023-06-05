@@ -20,16 +20,23 @@ if(isset($_GET['act'])) {
         case 'contact':
             include "view/contact/contact.php";
             break;
-        case 'listLH':
+        case 'product':
             $dataLH= listLoaiHang();
-            $targetSP = list_hang_hoa();
-
-            if(isset($_GET['id'])) {
-                $id = $_GET['id'];
-                $targetSP = list_hang_hoa_loai($id);
+            $targetSP = listHangHoaMoiNhat();
+            if(isset($_POST['kw']) && $_POST['kw'] != '') {
+                $kw = $_POST['kw'];
+                $targetSP =  list_hang_hoa_name($kw) ;
             }
+           if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $targetSP =  list_hang_hoa_loai($id);
+            $targetLH = selectLoaiHang_id($id);
+           }
             
-            include "view/listLH/listLH.php";
+            
+          
+            
+            include "view/product/listProduct.php";
             break;
 
         // Trang chi tiết sản phẩm
@@ -56,23 +63,7 @@ if(isset($_GET['act'])) {
             }
             include 'view/account/dangKy.php';
             break;
-            
-        // Trang đăng nhập tài khoản
-        case 'dangNhap':
-            if(isset($_POST['btn-dN'])) {
-               
-                $tenKhachHang= $_POST['tenKhachHang'];
-                $matKhau= $_POST['matKhau'];
-                $checkDN =  checkUser($tenKhachHang,$matKhau);
-                if(is_array($checkDN)) {
-                    $_SESSION['user'] = $checkDN;
-                    header("location: index.php");
-                    $thongbao = 'Đăng ký thành công';
-                }
-            }
-            include 'view/account/dangKy.php';
-            break;
-        
+
         //Trang đăng xuất
         case 'dangXuat':  
                 include 'view/account/dangXuat.php';
@@ -87,8 +78,16 @@ if(isset($_GET['act'])) {
                     $matKhau = $_POST['matKhau'];
                     $anh = $_FILES['anh']['name'];
                     $email = $_POST['email'];
-                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
-                    $_SESSION['user']['anh'] = $anh;
+                    if(isset($anh) && $anh!= ''){
+                        move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                        $_SESSION['user']['anh'] = $anh;
+                    }else{
+                        $anh = $_SESSION['user']['anh'];
+                    }
+                    $_SESSION['user']['tenKhachHang'] = $tenKhachHang;
+                    $_SESSION['user']['email'] = $email;
+                    $_SESSION['user']['matKhau'] = $matKhau;
+                   
                     updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
                     header("location: index.php");
                 }
@@ -105,6 +104,7 @@ if(isset($_GET['act'])) {
                 
                 $email = $_POST['email'];
                 $targetKH = getPass($tenKhachHang,$email);
+               
                 if(is_array($targetKH)) {
                     $yourPass = $targetKH['matKhau'];
                     
@@ -117,9 +117,27 @@ if(isset($_GET['act'])) {
             include 'view/account/forgotPass.php';
             
             break;  
+
+
+    //tìm kiếm theo danh mục sản phẩm
+    
+
     }
 }else{
-    
+    if(isset($_POST['btn-dN']) ) {
+               
+        $email= $_POST['email'];
+        $matKhau= $_POST['matKhau'];
+        $checkDN =  checkUser($email,$matKhau);
+        if(is_array($checkDN)) {
+            $_SESSION['user'] = $checkDN;
+            
+            $noti = 'Đăng nhập thành công';
+        }else{
+        $noti = "Thông tin sai!";
+        }
+    }
+   
     $newProduct = listHangHoaMoiNhat();
     $dataLH = listLoaiHang();
     include "view/home.php";

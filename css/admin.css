@@ -61,3 +61,7 @@ a:hover {
     display: block;
     text-align: center;
 }
+
+td {
+    width: 190px !important;
+}

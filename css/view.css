@@ -1,7 +1,3 @@
-.container {
-    max-width: 1200px !important;
-}
-
 .banner .img {
     width: 100% !important;
     height: 500px !important;
@@ -68,8 +64,16 @@ a {
 
 }
 
+.cmt-perAD {
+    color: rgb(246, 12, 12);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 700;
+}
+
 .cmt-content {
-    font-weight: 200;
+
+    color: black;
+    font-weight: 100;
 }
 
 #menu2 a {
@@ -77,12 +81,12 @@ a {
     width: 200px;
     margin: 10px 20px;
     padding: 10px;
-    border-radius: 4px;
+
 }
 
-#menu2 {
-    border: 1px solid;
-    border-radius: 4px;
+#cmt {
+    position: fixed;
+    right: 20px;
 }
 
 #menu2 a:hover {
@@ -96,7 +100,7 @@ a {
 .user {
     width: 200px !important;
     border: 1px solid !important;
-    height: 200px !important;
+    height: 100px !important;
     color: black;
 }
 
@@ -105,8 +109,13 @@ a {
     margin-top: 20px !important;
 }
 
+.user-img {
+    width: 150px !important;
+    border-radius: 1000px;
+}
+
 #user-img {
-    width: 70% !important;
+    width: 150px !important;
     border-radius: 1000px;
 }
 
@@ -115,11 +124,11 @@ a {
 }
 
 .form-sign {
-    border: 1px solid;
+
     width: 250px;
     margin: 10px 0px;
     padding: 5px;
-    border-radius: 4px;
+
 
 }
 
@@ -130,4 +139,30 @@ a:hover {
 .form-sign div {
     margin: 10px 10px;
     margin-right: 10px;
+}
+
+#hint {
+    background-color: darkgreen;
+    padding: 4px;
+    border-radius: 2px;
+    color: aliceblue;
+}
+
+i {
+    color: chocolate;
+    text-decoration: underline;
+}
+
+.accContent {
+    display: none;
+}
+
+#acc {
+    transition: 0.5s ease-in-out;
+    border: 1px solid green;
+    padding: 4px;
+}
+
+#acc:hover {
+    background-color: chocolate;
 }

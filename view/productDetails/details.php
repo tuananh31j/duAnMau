@@ -30,7 +30,7 @@
             <div class="title">
                 <h3>Bình luận</h3>
             </div>
-            <iframe src="view/comment/cmt.php?idHH=<?php echo $targetSP_id['maHangHoa'] ?>" width="800px"
+            <iframe src="view/comment/cmt.php?idHH=<?php echo $targetSP_id['maHangHoa'] ?>" width="950px" height="400px"
                 frameborder="0"></iframe>
 
         </main>

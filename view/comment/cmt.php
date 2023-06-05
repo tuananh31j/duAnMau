@@ -13,7 +13,7 @@ $listCMT = pdo_query($sql, $idHH);
 if(isset($_POST['btn-cmt']) && isset($_SESSION['user'])) {
     $noiDung = $_POST['noiDung'];
     $maHangHoa = $idHH;
-    $ngayBinhLuan = date("d-m-Y");
+    $ngayBinhLuan = date("Y-m-d");
     $maKhachHang = $_SESSION['user']['maKhachHang'];
 
     $sql = "insert into binhLuan(noiDung, ngayBinhLuan, maKhachHang, maHangHoa) values(?, ?, ?, ?)";
@@ -39,10 +39,20 @@ if(isset($_POST['btn-cmt']) && isset($_SESSION['user'])) {
 </head>
 
 <body>
+    <div id="cmt">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <input type="text" name="maHangHoa" hidden value="<?php echo $idHH ?>">
+            <input type="text" placeholder="Nhập nội dung" name="noiDung">
+            <input type="submit" name="btn-cmt" value="Gửi">
 
-    <nav class="nav flex-column">
+        </form>
+    </div>
+
+    <nav class="nav flex-column ">
         <ul>
             <?php foreach($listCMT as $cmt) {
+                if($cmt['vaiTro'] == 0){
+
 
              ?>
             <li class="nav-link active" aria-current="page"><img class="cmt-img"
@@ -51,18 +61,23 @@ if(isset($_POST['btn-cmt']) && isset($_SESSION['user'])) {
                         class="cmt-content"><?php echo $cmt['noiDung'] ?></span></span>
                 <p><?php echo $cmt['ngayBinhLuan'] ?></p>
             </li>
-            <?php } ?>
+
+            <?php }else{
+?>
+            <li class="nav-link active" aria-current="page">
+                <i>quản trị viên</i><br>
+                <img class="cmt-img" src="../../img/<?php echo $cmt['anh'] ?>" alt="">
+
+                <span class="cmt-perAD"><?php echo $cmt['tenKhachHang'] ?>: <span
+                        class="cmt-content"><?php echo $cmt['noiDung'] ?></span></span>
+
+                <p><?php echo $cmt['ngayBinhLuan'] ?></p>
+            </li>
+            <?php } } ?>
         </ul>
 
     </nav>
-    <div>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-            <input type="text" name="maHangHoa" hidden value="<?php echo $idHH ?>">
-            <input type="text" name="noiDung">
-            <input type="submit" name="btn-cmt" value="Gửi">
 
-        </form>
-    </div>
 
 </body>
 

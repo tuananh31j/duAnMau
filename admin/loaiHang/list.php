@@ -1,4 +1,10 @@
 <div class="list_lh">
+    <?php if(isset($noti) && $noti != '') {
+
+?>
+    <p><?php echo $noti ?></p>
+    <?php } 
+?>
     <table>
         <thead>
             <th>
@@ -39,4 +45,5 @@
 
 
     </div>
+
 </div>
