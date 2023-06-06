@@ -5,13 +5,13 @@
     if(isset($_POST['btn-add']))
     echo $noti
     ?>
-        <h1>thêm Khách hàng:</h1>
+        <h1>Thêm hàng hóa:</h1>
         <form action="index.php?act=addKH" enctype="multipart/form-data" method="post">
-            <input type="text" name="maKhachHang" disabled hidden placeholder="mã khách hàng"><br>
+            <input type="text" name="maHangHoa" disabled hidden><br>
             <!-- tên -->
             <div class="mb-3">
-                <label for="tenKhachHang" class="form-label">Tên khách hàng</label>
-                <input type="text" name="tenKhachHang" placeholder="tên khách hàng" class="form-control">
+                <label for="tenHangHoa" class="form-label">Tên hàng hóa</label>
+                <input type="text" name="tenHangHoa" placeholder="tên hàng hóa" class="form-control">
 
             </div>
             <!-- mat khau -->

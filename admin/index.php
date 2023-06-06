@@ -70,7 +70,13 @@ if(isset($_GET['act'])) {
                 $tenKhachHang = $_POST['tenKhachHang'];
                 $matKhau = $_POST['matKhau'];
                 $email = $_POST['email'];
-                $anh = $_POST['anh'];
+                if(isset($_FILES)) {
+                    $anh = $_FILES['anh']['name'];
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                }else{
+                    $anh = 'anhcuaban.png';
+                }
+                
                 $vaiTro = $_POST['tenLoai'];
                 addKhachHang($tenKhachHang, $matKhau, $email, $anh, $vaiTro  );
                 $noti = "Thêm thành công!";
@@ -95,20 +101,31 @@ if(isset($_GET['act'])) {
             header("location: index.php?act=listKH");
             
             break;
-
+            //chỉnh sửa thông tin khách hàng
         case 'updateKH':
         
             if(isset($_GET['id'])) {
                 $id = (int)$_GET['id'];
-                $targetLH = selectLoaiHang_id($id);
+                $targetKH = selectKhachHang_id($id);
             }
             if(isset($_POST['btn-update'])&&$_POST['btn-update']) {
-                $id = (int)$_POST['maLoai'];
-                $tenLoaiMoi= $_POST['tenLoai'];
-                updateLoaiHang($tenLoaiMoi, $id);
+                $maKhachHang = (int)$_POST['maKhachHang'];
+                $tenKhachHang= $_POST['tenKhachHang'];
+                $maKhau= $_POST['maKhau'];
+                $email= $_POST['email'];
+                if(isset($_FILES)) {
+                    $anh= $_FILES['anh']['name'];
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                }else{
+                    $anh = $targetKH['anh'];
+                }
+                
+                $kichHoat= $_POST['kichHoat'];
+                $vaiTro= $_POST['vaiTro'];
+                updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang);
                 $noti = 'cập nhật thành công!';
             }
-            include "loaiHang/update.php";
+            include "khachHang/update.php";
             break;
     
         default:

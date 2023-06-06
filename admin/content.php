@@ -1,4 +1,7 @@
 <!-- main content -->
-<div class="main-content">
-    <h3>hello</h3>
+<div class="col mt-5">
+    Bạn đang ở trang điều khiển
+</div>
+
+</div>
 </div>

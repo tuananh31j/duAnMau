@@ -10,28 +10,39 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/view.css">
 
-    <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fuild ">
+        <div class="row m-3 ">
+            <div class="col-3 text-start bg-dark rounded pb-5 ps-2 pt-3 ">
+                <header id="sideleft_ad" class="pb-5">
+                    <!-- title -->
+                    <div class="title-header">
+                        <h1 class="text-light pb-5">Trang quản trị</h1>
+                    </div>
 
-        <!-- header -->
-        <header>
-            <!-- title -->
-            <div class="title-header">
-                <h1>Trang quản trị</h1>
+                    <!-- menu -->
+                    <ul class="nav flex-column pb-5">
+                        <div><a class="nav-link bg-success text-dark" href="../index.php">Trang người dùng</a></div>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?act=listLH">Loại hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?act=listLH">Hàng hóa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?act=listKH">Khách hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Bình luận</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Thống kê</a>
+                        </li>
+                    </ul>
+                </header>
             </div>
-            <div><a href="../index.php">Trang chủ</a></div>
-            <!-- menu -->
-            <nav class="menu-header">
-                <ul>
-                    <li><a href="index.php">Trang chủ</a></li>
-                    <li><a href="index.php?act=listLH">Loại hàng</a></li>
-                    <li><a href="">Hàng hóa</a></li>
-                    <li><a href="index.php?act=listKH">Khách hàng</a></li>
-                    <li><a href="#">Bình luận</a></li>
-                    <li><a href="#">Thống kê</a></li>
-                </ul>
-            </nav>
-        </header>

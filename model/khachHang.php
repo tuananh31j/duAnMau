@@ -15,6 +15,11 @@ function listKhachHang(){
     return pdo_query($sql);
 }
 
+//chọn khách hàng theo id
+function selectKhachHang_id($id){
+    $sql= "select * from khachHang where maKhachHang = $id";
+    return pdo_query_one($sql);
+}
 //xóa khách hàng
 function deleteKhachHang($id){
     $sql = "delete from khachHang where maKhachHang = $id";
@@ -33,5 +38,10 @@ function getPass($tenKhachHang,$email) {
 function updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang) {
     $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ? where maKhachHang = ?";
     pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
+}
+
+function updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang) {
+    $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ?, kichHoat = ?, vaiTro = ? where maKhachHang = ?";
+    pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang);
 }
 ?>
