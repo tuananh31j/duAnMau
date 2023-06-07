@@ -1,8 +1,8 @@
 <div class="bg-success-subtle me-3 ">
     <!-- account -->
     <div>
-        <h3 class="text-center " id="acc">Tài Khoản</h3>
-        <div id="acchide" class="acsount-box ">
+        <h3 class="text-center ">Tài Khoản</h3>
+        <div  class="acsount-box ">
 
             <p class="text-center" id="noti"><?php  echo isset($noti)?$noti:''; ?></p>
             <?php

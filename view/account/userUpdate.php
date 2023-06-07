@@ -30,14 +30,10 @@
 
             </div>
 
-            <button type="submit" name="btn-userUpdate" class="btn btn-primary">Cập nhật</button>
+            <button onclick="noti_update_ac()" type="submit" name="btn-userUpdate" class="btn btn-primary">Cập
+                nhật</button>
             <button type="reset" class="btn btn-primary">Nhập lại</button>
         </form>
     </div>
 
 </div>
-<script>
-function noti() {
-    alert("Cập nhật tài khoản thành công!");
-}
-</script>

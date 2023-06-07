@@ -2,11 +2,15 @@
 <div class="col mt-5">
     <div class="mt5">
         <?php
+
+
+
+        
     if(isset($_POST['btn-add']))
     echo $noti
     ?>
         <h1>Thêm hàng hóa:</h1>
-        <form action="index.php?act=addKH" enctype="multipart/form-data" method="post">
+        <form action="index.php?act=addHH" enctype="multipart/form-data" method="post">
             <input type="text" name="maHangHoa" disabled hidden><br>
             <!-- tên -->
             <div class="mb-3">
@@ -14,27 +18,47 @@
                 <input type="text" name="tenHangHoa" placeholder="tên hàng hóa" class="form-control">
 
             </div>
-            <!-- mat khau -->
+            <!-- giá -->
             <div class="mb-3">
-                <label for="matKhau" class="form-label">Mật khẩu</label>
-                <input type="password" name="matKhau" placeholder="Mật khẩu" class="form-control">
-            </div>
-            <!-- email -->
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" placeholder="email của bạn" class="form-control">
+                <label for="donGia" class="form-label">Giá</label>
+                <input type="text" name="donGia" placeholder="nhập giá" class="form-control">
 
             </div>
             <!-- anh -->
             <div class="mb-3">
-                <label for="anh" class="form-label">Tên khách hàng</label>
-                <input type="file" name="anh" placeholder="Ảnh đại diện" class="form-control">
+                <label for="anh" class="form-label">Ảnh</label>
+                <input type="file" name="anh" class="form-control">
 
             </div>
-            <!-- vai trò -->
+            <!-- ngay nhap -->
             <div class="mb-3">
-                <label for="vaiTro" class="form-label">Vai trò</label>
-                <input type="text" name="vaiTro" placeholder="Vai trò" class="form-control">
+                <label for="ngayNhap" class="form-label">Ngày nhập hàng</label>
+                <input type="date" name="ngayNhap" placeholder="chọn ngày nhập" class="form-control">
+
+            </div>
+            <!-- ten loai -->
+            <div class="mb-3 " class="form-control">
+                <label for="tenLoai" class="form-label">Tên hàng hóa</label>
+                <select name="tenLoai" id="">
+                    <option value="">Chọn loại hàng</option>
+                    <?php foreach($danhsachlh as $lh) {
+                        
+                     ?>
+                    <option value="<?php echo $lh['maLoai']?>"><?php echo $lh['tenLoai']?></option>
+                    <?php } ?>
+                </select>
+
+            </div>
+            <!-- mô tả -->
+            <div class="mb-3">
+                <label for="moTa" class="form-label">Mô tả</label>
+                <input type="text" name="moTa" placeholder="Nhập mô tả" class="form-control">
+
+            </div>
+            <!-- giảm giá -->
+            <div class="mb-3">
+                <label for="giamGia" class="form-label">Giảm giá</label>
+                <input type="text" name="giamGia" placeholder="Nhập số tiền giảm giá" class="form-control">
 
             </div>
             <!-- btn -->
@@ -43,7 +67,10 @@
             <input class="btn btn-info" type="reset" value="Nhập lại">
 
         </form>
-        <div><button class="btn btn-primary"><a id="lh" href="index.php?act=listLH">Danh sách</a></button></div>
+        <br><br>
+        <div><button class="btn btn-success"><a class=" text-dark" id="lh" href="index.php?act=listHH">Danh
+                    sách</a></button>
+        </div>
 
     </div>
 </div>

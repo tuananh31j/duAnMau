@@ -5,23 +5,23 @@
     if(isset($_POST['btn-add']))
     echo $noti
     ?>
-        <h1>thêm Khách hàng:</h1>
-        <form action="index.php?act=addKH" enctype="multipart/form-data" method="post">
-            <input type="text" name="maKhachHang" hidden placeholder="mã khách hàng"><br>
-            <!-- tên -->
+        <h1>Thêm bình luận:</h1>
+        <form action="index.php?act=addCMT" enctype="multipart/form-data" method="post">
+            <input type="text" name="maBinhLuan" hidden><br>
+            <!-- nộidung -->
             <div class="mb-3">
-                <label for="tenKhachHang" class="form-label">Tên khách hàng</label>
-                <input type="text" name="tenKhachHang" placeholder="tên khách hàng" class="form-control">
+                <label for="noiDung" class="form-label">Tên khách hàng</label>
+                <input type="text" name="noiDung" placeholder="Nhập nội dung" class="form-control">
 
             </div>
-            <!-- mat khau -->
+            <!-- ngày -->
             <div class="mb-3">
-                <label for="matKhau" class="form-label">Mật khẩu</label>
-                <input type="password" name="matKhau" placeholder="Mật khẩu" class="form-control">
+                <label for="ngayBinhLuan" class="form-label">Ngày bình luận</label>
+                <input type="date" name="ngayBinhLuan" class="form-control">
             </div>
-            <!-- email -->
+            <!-- maKhachHang -->
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="maKhach" class="form-label">Email</label>
                 <input type="email" name="email" placeholder="email của bạn" class="form-control">
 
             </div>

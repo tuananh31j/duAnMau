@@ -14,6 +14,9 @@
             <input type="submit" name="btn-getPass" value="Gửi">
             <input type="reset" value="Nhập lại">
         </form>
+        <br>
+        <hr>
+        <div><a href="index.php">Quay về trang chủ</a></div>
         <?php 
          
         if(isset($yourPass)&& $yourPass!='') {
@@ -24,6 +27,3 @@
          ?>
     </div>
 </div>
-<script>
-
-</script>

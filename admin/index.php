@@ -3,6 +3,7 @@ include "../model/pdo.php";
 include "../model/hangHoa.php";
 include "../model/loaiHang.php";
 include "../model/khachHang.php";
+include "../model/binhLuan.php";
 include "header.php";
 
 
@@ -77,7 +78,7 @@ if(isset($_GET['act'])) {
                     $anh = 'anhcuaban.png';
                 }
                 
-                $vaiTro = $_POST['tenLoai'];
+                $vaiTro = $_POST['vaiTro'];
                 addKhachHang($tenKhachHang, $matKhau, $email, $anh, $vaiTro  );
                 $noti = "Thêm thành công!";
             }
@@ -127,10 +128,136 @@ if(isset($_GET['act'])) {
             }
             include "khachHang/update.php";
             break;
-    
+
+        // hàng hóa
+            //list hàng hóa
+        case 'listHH':
+            $danhsachHH = listHangHoa() ;
+                include "hangHoa/list.php";
+            break;
+
+            //thêm hàng hóa
+        case 'addHH':
+            $danhsachlh = listLoaiHang() ;
+            if(isset($_POST['btn-add'])) {
+                $tenHangHoa = $_POST['tenHangHoa'];
+                $donGia = $_POST['donGia'];
+                $anh = $_FILES['anh']['name'];
+                $ngayNhap = $_POST['ngayNhap'];
+                $Loai = $_POST['tenLoai'];
+                $moTa = $_POST['moTa'];
+                $giamGia = $_POST['giamGia'];
+                
+                if(isset($_FILES)) {
+                    $anh = $_FILES['anh']['name'];
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                }else{
+                    $anh = 'default.png';
+                }
+                
+                
+                addHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia);
+                $noti = "Thêm thành công!";
+            }
+            include "hangHoa/add.php";
+            break;
+                //chỉnh sửa thông tin hàng hóa
+        case 'updateHH':
+            $danhsachlh = listLoaiHang() ;
+            if(isset($_GET['id'])) {
+                $id = (int)$_GET['id'];
+                $targetHH = list_hang_hoa_id($id);
+            }
+            if(isset($_POST['btn-update'])&& $_POST['btn-update']) {
+                $maHangHoa = (int)$_POST['maHangHoa'];
+                $tenHangHoa = $_POST['tenHangHoa'];
+                $donGia = $_POST['donGia'];
+                $anh = $_FILES['anh']['name'];
+                $ngayNhap = $_POST['ngayNhap'];
+                $Loai = $_POST['tenLoai'];
+                $moTa = $_POST['moTa'];
+                $giamGia = $_POST['giamGia'];
+                
+                if(isset($_FILES)) {
+                    $anh = $_FILES['anh']['name'];
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                }else{
+                    $anh = $targetHH['anh'];
+                }
+                
+                
+                updateHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia, $maHangHoa);
+                header("location: index.php?act=listHH");
+            }
+            include "hangHoa/update.php";
+            break;
+
+            //xóa loại hàng
+        case 'deleteHH':
+            try {
+                if(isset($_GET['id'])) {
+                $id = $_GET['id'];
+                deleteHangHoa($id);
+                header("location: index.php?act=listHH");
+                }
+            } catch (Exception $e) {
+            ?>
+<script>
+let err = function() {
+    alert("Không thể xóa vì nó có liên kết khóa ngoại!")
+}
+err()
+</script>
+<?php
+                }
+
+            break;
+
+        //Bình luận
+            //danh sách bình luận
+        case 'listCMT':
+                $danhsachCMT = listBinhLuan();
+                if(isset($_GET['btn'])) {
+                    if($_GET['btn'] == "btn_desc") {
+                         $danhsachCMT = listBinhLuan_desc();
+                    }elseif($_GET['btn'] == "btn_HH") {
+                        $danhsachCMT = listBinhLuan_HH();
+                    }elseif($_GET['btn'] == "btn_KH") {
+                        $danhsachCMT = listBinhLuan_KH();
+                    }
+                    
+                   
+                }
+            include "binhLuan/list.php";
+            break;
+            //Xóa bình luân
+        case 'deleteCMT':
+            
+                if(isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    delete_cmt($id);
+                    }
+
+                if(isset($_POST['box']) && is_array($_POST['box'])) {
+                    $checkedAll = $_POST['box'];
+
+                    foreach($checkedAll as $checked) {
+                        delete_cmt($checked);
+                    }
+                }
+           
+                header("location: index.php?act=listCMT");
+                
+                break;
+
         default:
             include "content.php";
             break;
+
+
+
+
+    
     }
 }else{
         include_once "content.php";

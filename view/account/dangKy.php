@@ -14,7 +14,7 @@
                 <label for="matKhau">matKhau</label>
                 <input type="password" name="matKhau">
             </div>
-            <input onclick="noti()" type="submit" name="btn-dk" value="Đăng ký">
+            <input onclick="noti_signup()" type="submit" name="btn-dk" value="Đăng ký">
             <input type="reset" value="Nhập lại">
         </form>
         <?php 
@@ -26,8 +26,3 @@
          ?>
     </div>
 </div>
-<script>
-function noti() {
-    alert('đăng ký thành công! Quay trở lại đăng nhập?')
-}
-</script>

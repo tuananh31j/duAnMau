@@ -20,6 +20,8 @@ if(isset($_GET['act'])) {
         case 'contact':
             include "view/contact/contact.php";
             break;
+
+        //trang sản phẩm và tìm kiếm sản phẩm
         case 'product':
             $dataLH= listLoaiHang();
             $targetSP = listHangHoaMoiNhat();
@@ -119,7 +121,7 @@ if(isset($_GET['act'])) {
             break;  
 
 
-    //tìm kiếm theo danh mục sản phẩm
+    
     
 
     }

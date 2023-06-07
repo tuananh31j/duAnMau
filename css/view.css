@@ -133,7 +133,13 @@ a {
 }
 
 a:hover {
-    background-color: chocolate;
+    background-color: rgb(231, 164, 115);
+    text-decoration: underline;
+
+}
+
+#ad {
+    color: rgb(95, 7, 98);
 }
 
 .form-sign div {
@@ -142,27 +148,59 @@ a:hover {
 }
 
 #hint {
-    background-color: darkgreen;
+    background-color: #198754;
     padding: 4px;
     border-radius: 2px;
     color: aliceblue;
 }
 
-i {
-    color: chocolate;
-    text-decoration: underline;
-}
+
 
 .accContent {
     display: none;
+    transition: height 2s;
 }
 
 #acc {
-    transition: 0.5s ease-in-out;
-    border: 1px solid green;
+
+    color: black;
     padding: 4px;
+    width: 40px;
+    font-size: 30px;
+    align-items: center;
+
 }
 
+
+
 #acc:hover {
-    background-color: chocolate;
+    opacity: 1;
+}
+
+#acchide {
+    margin-top: 20px;
+    line-height: 2;
+    color: black;
+    font-size: 16px;
+
+}
+
+
+
+#table td {
+
+    border: 1px solid;
+    height: 10px;
+
+}
+
+#table thead td {
+    width: auto !important;
+    border: 1px solid;
+    height: 10px;
+
+}
+
+.act {
+    background-color: gray;
 }
