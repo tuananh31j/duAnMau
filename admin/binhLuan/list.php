@@ -1,14 +1,15 @@
 <!-- main content -->
-<div class="col mt-5">
+<div class="col mt-5 text-center">
+    <h1>Danh sách bình luận:</h1>
     <div class="list_lh mt-5">
         <?php if(isset($noti) && $noti != '') {
 
-?>
+            ?>
         <p><?php echo $noti ?></p>
         <?php } 
-?>
-        <table class="table table-striped">
-            <thead>
+            ?>
+        <table id="table" class="table table-striped">
+            <thead class="bg-success">
                 <tr>
                     <td>Chọn</td>
                     <td id="maBinhLuan">Mã bình luận</td>
@@ -16,7 +17,7 @@
                     <td id="maHangHoa">Mã hàng hóa</td>
                     <td>Ngày</td>
                     <td>Nội dung</td>
-                    <td>Chức năng</td>
+                    <td>Chức năng nhanh</td>
                 </tr>
 
 
@@ -43,23 +44,33 @@
             }
             ?>
                     <div>
+                        <!-- chọn ALL -->
                         <button id="btn_Check_All" type="button" class="btn btn-primary">(chọn/bỏ) tất cả</button>
+
+                        <!-- xóa all -->
                         <button onclick="return noti_delete_all()" type="submit"
                             class="btn btn-danger btn_Delete_All opacity-25">Xóa</button>
-                        <a onclick="setColor(maBinhLuan)" id="btn_DECS" href="index.php?act=listCMT&btn=btn_desc"
+
+                        <!-- bình luận mới nhất -->
+                        <a onclick="setColor(maBinhLuan)" href="index.php?act=listCMT&btn=btn_DESC"
                             class="btn btn-success">Bình luận mới nhất</a>
-                        <a onclick="setColor(maBinhLuan)" href="index.php?act=listCMT&btn=btn_asc"
+
+                        <!-- bình luận cũ nhất -->
+                        <a onclick="setColor(maBinhLuan)" href="index.php?act=listCMT&btn=btn_ASC"
                             class="btn btn-secondary">Bình luận cũ nhất</a>
+
+                        <!-- nhóm bình luận theo khách hàng -->
                         <a onclick="setColor(maKhachHang)" href="index.php?act=listCMT&btn=btn_KH" type="button"
                             class="btn btn-warning">Nhóm CMT(khách
                             Hàng)</a>
+
+                        <!-- nhóm bình luận theo hàng hóa -->
                         <a onclick="setColor(maHangHoa)" href="index.php?act=listCMT&btn=btn_HH" type="button"
                             class="btn btn-info">Nhóm CMT(hàng
                             hóa)</a>
+
+                        <!-- thêm hàng hóa -->
                         <a href="index.php?act=addCMT" class="btn btn-dark">Thêm+</a>
-                        <button type="button">Dark</button>
-
-
                     </div>
                 </form>
             </tbody>

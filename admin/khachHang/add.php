@@ -38,14 +38,16 @@
 
             </div>
             <!-- btn -->
-            <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm"><br>
-
-            <input class="btn btn-info" type="reset" value="Nhập lại">
-
-        </form>
-        <div><button class="btn btn-primary"><a id="lh" href="index.php?act=listKH">Danh sách</a></button></div>
+            <div>
+                <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm">
+                <input class="btn btn-info" type="reset" value="Nhập lại">
+                <a class="btn btn-success text-dark" href="index.php?act=listKH">Danh sách</a></>
+            </div>
 
     </div>
+
+    </form>
+
 </div>
 
 </div>

@@ -7,6 +7,33 @@ function listHangHoa() {
     return pdo_query($sql);
 }
 
+// list hàng hóa cũ nhất
+function listHangHoa_ASC() {  
+    $sql = "select * from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by maHangHoa asc";
+    return pdo_query($sql);
+}
+
+//danh sách hàng hóa mới nhất
+function listHangHoaMoiNhat() {
+    $sql = "select * from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by maHangHoa desc";
+    return pdo_query($sql);
+    
+}
+
+//đơn giá cao nhất
+function listHangHoa_price_DESC() {
+    $sql = "select * from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by donGia desc";
+    return pdo_query($sql);
+    
+}
+
+//view cao nhất
+function listHangHoa_view_DESC() {
+    $sql = "select * from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by soLuotXem desc";
+    return pdo_query($sql);
+    
+}
+
 //thêm hàng hóa
 function addHangHoa($tenKhachHang, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia) {
     $sql = "insert into hangHoa(tenHangHoa, donGia, anh, ngayNhap, maLoai, moTa, giamGia) values(?, ?, ?, ?, ?, ?, ?)";
@@ -27,7 +54,7 @@ function updateHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $gia
     pdo_execute($sql,$tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia, $maHangHoa);
 }
 
-//xóa hàng xóa theo 
+//xóa hàng xóa theo ma hàng hóa
 function deleteHangHoa($id) {
     $sql = "delete from hangHoa where maHangHoa = $id";
     pdo_execute($sql);
@@ -46,12 +73,7 @@ function list_hang_hoa_name($keyword) {
 }
 
 
-//danh sách hàng hóa mới nhất
-function listHangHoaMoiNhat() {
-    $sql = "select * from hangHoa order by maHangHoa desc";
-    return pdo_query($sql);
-    
-}
+
 
 
 //hàm rút gọn tìm kiếm một trong id và keyword

@@ -1,15 +1,39 @@
+let maKhachHang = document.getElementById("maKhachHang");
+let maHangHoa = document.getElementById("maHangHoa");
+let maBinhLuan = document.getElementById("maBinhLuan");
+
+
+let donGia = document.getElementById("donGia");
+let soLuotXem = document.getElementById("soLuotXem");
+
+let vaiTro = document.getElementById("vaiTro");
+
+let maLoai = document.getElementById("maLoai");
+
+
+let tagNames = document.querySelectorAll("[name='box[]']");
+let btnDeleteAll = document.querySelector(".btn_Delete_All");
+let btnCheckAll = document.querySelector("#btn_Check_All");
+let isCheckAll = false;
+
+
+
+//thông báo đăng ký tài khoản thành công
 function noti_signup() {
     alert('đăng ký thành công! Quay trở lại đăng nhập?')
 }
 
+//thông báo chỉnh sủa tài khoản thành công
 function noti_update_ac() {
     alert("Cập nhật tài khoản thành công! Quay về trang chủ?");
 }
 
+//thông báo cập nhật thành công
 function noti_update_HH() {
     alert('Cập nhật thành công! Quay lại danh sách?')
 }
 
+//thông báo xác nhận người đùng muốn xóa
 function noti_delete_all() {
     var result = confirm("Bạn có chắc chắn muốn xóa hết dữ liệu đã chọn không?");
     if (result) {
@@ -22,22 +46,12 @@ function noti_delete_all() {
     return false;
 }
 
-let maKhachHang = document.getElementById("maKhachHang");
-let maHangHoa = document.getElementById("maHangHoa");
-let maBinhLuan = document.getElementById("maBinhLuan");
-
+//đánh dấu
 function setColor(element) {
-    element.classList.toggle("bg-secondary");
+    element.classList.toggle("bg-danger");
 }
 
-
-let tagNames = document.querySelectorAll("[name='box[]']");
-let btnDeleteAll = document.querySelector(".btn_Delete_All");
-let btnCheckAll = document.querySelector("#btn_Check_All");
-let isCheckAll = false;
-
-
-
+//chọn tất cả
 function checkAll() {
 
     isCheckAll = !isCheckAll;
@@ -52,6 +66,8 @@ function checkAll() {
         btnDeleteAll.disabled = !isCheckAll;
     }
 }
+
+
 
 btnCheckAll.addEventListener("click", checkAll);
 

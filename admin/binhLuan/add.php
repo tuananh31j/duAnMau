@@ -8,42 +8,41 @@
         <h1>Thêm bình luận:</h1>
         <form action="index.php?act=addCMT" enctype="multipart/form-data" method="post">
             <input type="text" name="maBinhLuan" hidden><br>
-            <!-- nộidung -->
+
+            <!-- chọn hàng hóa -->
             <div class="mb-3">
-                <label for="noiDung" class="form-label">Tên khách hàng</label>
+                <label for="maHangHoa" class="form-label">Chọn hàng hóa:</label><br>
+                <select name="maHangHoa" id="">
+                    <?php foreach($danhsachHH as $ds) { ?>
+                    <option value="<?php echo $ds["maHangHoa"] ?>"><?php echo $ds["tenHangHoa"] ?></option>
+                    <?php } ?>
+                </select>
+
+            </div>
+
+            <!-- ngày -->
+            <div class="mb-3">
+                <label for="ngayBinhLuan" class="form-label">Ngày bình luận:</label>
+                <input type="date" name="ngayBinhLuan" class="form-control">
+            </div>
+
+
+            <!-- Nội dung -->
+            <div class="mb-3">
+                <label for="noiDung" class="form-label">Nội dung:</label>
                 <input type="text" name="noiDung" placeholder="Nhập nội dung" class="form-control">
 
             </div>
-            <!-- ngày -->
-            <div class="mb-3">
-                <label for="ngayBinhLuan" class="form-label">Ngày bình luận</label>
-                <input type="date" name="ngayBinhLuan" class="form-control">
-            </div>
-            <!-- maKhachHang -->
-            <div class="mb-3">
-                <label for="maKhach" class="form-label">Email</label>
-                <input type="email" name="email" placeholder="email của bạn" class="form-control">
-
-            </div>
-            <!-- anh -->
-            <div class="mb-3">
-                <label for="anh" class="form-label">Tên khách hàng</label>
-                <input type="file" name="anh" placeholder="Ảnh đại diện" class="form-control">
-
-            </div>
-            <!-- vai trò -->
-            <div class="mb-3">
-                <label for="vaiTro" class="form-label">Vai trò</label>
-                <input type="text" name="vaiTro" placeholder="Vai trò" class="form-control">
-
-            </div>
             <!-- btn -->
-            <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm"><br>
 
-            <input class="btn btn-info" type="reset" value="Nhập lại">
+            <div>
+                <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm">
+                <input class="btn btn-info" type="reset" value="Nhập lại">
+                <button class="btn btn-success "><a class="text-light" id="lh" href="index.php?act=listCMT">Danh
+                        sách</a></button>
+            </div>
 
         </form>
-        <div><button class="btn btn-primary"><a id="lh" href="index.php?act=listKH">Danh sách</a></button></div>
 
     </div>
 </div>

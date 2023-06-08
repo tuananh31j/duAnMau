@@ -6,14 +6,14 @@ function listBinhLuan(){
 }
 
 //danh sách bình luận mới nhất
-function listBinhLuan_desc() {
-    $sql = "select * from binhLuan order by maBinhLuan";
+function listBinhLuan_DESC() {
+    $sql = "select * from binhLuan order by maBinhLuan desc";
     return pdo_query($sql);
 }
 
 
 //danh sách bình luận cũ nhất
-function listBinhLuan_asc() {
+function listBinhLuan_ASC() {
     $sql = "select * from binhLuan order by maBinhLuan asc";
     return pdo_query($sql);
 }
@@ -34,6 +34,12 @@ function listBinhLuan_HH() {
 function delete_cmt($id) {
     $sql ="delete from binhLuan where maBinhLuan = $id";
     pdo_execute($sql);
+}
+
+//thêm bình luận
+function addBinhLuan($maKhachHang, $maHangHoa, $ngayBinhLuan, $noiDung) {
+    $sql = "insert into binhLuan(maKhachHang, maHangHoa, ngayBinhLuan, noiDung) values(?, ?, ?, ?)";
+    pdo_execute($sql,$maKhachHang, $maHangHoa, $ngayBinhLuan, $noiDung);
 }
 
 ?>

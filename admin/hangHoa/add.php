@@ -62,15 +62,15 @@
 
             </div>
             <!-- btn -->
-            <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm"><br>
-
-            <input class="btn btn-info" type="reset" value="Nhập lại">
+            <div>
+                <input type="submit" class="btn btn-primary" name="btn-add" value="Thêm">
+                <input class="btn btn-info" type="reset" value="Nhập lại">
+                <a class="btn btn-success text-dark" id="lh" href="index.php?act=listHH">Danh sách</a>
+            </div>
 
         </form>
         <br><br>
-        <div><button class="btn btn-success"><a class=" text-dark" id="lh" href="index.php?act=listHH">Danh
-                    sách</a></button>
-        </div>
+
 
     </div>
 </div>

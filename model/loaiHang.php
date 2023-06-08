@@ -13,6 +13,18 @@ function listLoaiHang() {
     return pdo_query($sql);
 }
 
+//danh sach loai hang mới nhất
+function listLoaiHang_DESC() {
+    $sql = "select * from loai order by maLoai desc";
+    return pdo_query($sql);
+}
+
+//danh sach loai hang cũ nhất
+function listLoaiHang_ASC() {
+    $sql = "select * from loai order by maLoai asc";
+    return pdo_query($sql);
+}
+
 //danh sách tên loại hàng
 function list_tenLoai() {
     $sql = "select tenLoai from loai";

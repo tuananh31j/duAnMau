@@ -4,6 +4,7 @@ include "../model/hangHoa.php";
 include "../model/loaiHang.php";
 include "../model/khachHang.php";
 include "../model/binhLuan.php";
+session_start();
 include "header.php";
 
 
@@ -27,7 +28,17 @@ if(isset($_GET['act'])) {
             break;
             //danh sách loại hàng
         case 'listLH':
-            $danhsachlh = listLoaiHang() ;
+            $danhsachLH = listLoaiHang();
+
+            if(isset($_GET['btn'])) {
+                if($_GET['btn'] == "btn_DESC") {
+                    $danhsachLH = listLoaiHang_DESC();
+                }elseif($_GET['btn'] == "btn_ASC") {
+                    $danhsachLH = listLoaiHang_ASC();
+                }
+                
+               
+            }
              include "loaiHang/list.php";
             break;
             //chỉnh sửa loại hàng
@@ -48,14 +59,19 @@ if(isset($_GET['act'])) {
 
             //xóa loại hàng
         case 'deleteLH':
-            try {
+
+            if(isset($_POST['box']) && is_array($_POST['box'])) {
+                $checkedAll = $_POST['box'];
+
+                foreach($checkedAll as $checked) {
+                    deleteLoaiHang($checked);
+                }
+            }
                 if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 deleteLoaiHang($id);
                 }
-            } catch (Exception $e) {
-                echo 'Không thể xóa dòng này vì nó là liên kế khóa ngoại của hàng hóa ';
-            }
+            
             header("location: index.php?act=listLH");
             
             break;
@@ -86,19 +102,38 @@ if(isset($_GET['act'])) {
             break;
             //danh sách khách hàng
         case 'listKH':
+
             $danhsachKH = listKhachHang() ;
+            if(isset($_GET['btn'])) {
+                if($_GET['btn'] == "btn_DESC") {
+                    $danhsachKH = listKhachHang_DESC();
+                }elseif($_GET['btn'] == "btn_ASC") {
+                    $danhsachKH = listKhachHang_ASC();
+                }elseif($_GET['btn'] == "btn_member") {
+                    $danhsachKH = listMember();
+                }elseif($_GET['btn'] == "btn_admin") {
+                    $danhsachKH = listAdmin();
+                }
+                
+               
+            }
                 include "KhachHang/list.php";
             break;
             //xóa khách hàng
         case 'deleteKH':
-         try{
+            if(isset($_POST['box']) && is_array($_POST['box'])) {
+                $checkedAll = $_POST['box'];
+
+                foreach($checkedAll as $checked) {
+                    deleteKhachHang($checked);
+                }
+            }
+       
              if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 deleteKhachHang($id);
                 }
-         }catch(Exception $e){
-            echo 'thong bao!!!!!!!!!';
-         }
+      
             header("location: index.php?act=listKH");
             
             break;
@@ -132,7 +167,20 @@ if(isset($_GET['act'])) {
         // hàng hóa
             //list hàng hóa
         case 'listHH':
-            $danhsachHH = listHangHoa() ;
+            $danhsachHH = listHangHoa();
+            if(isset($_GET['btn'])) {
+                if($_GET['btn'] == "btn_DESC") {
+                    $danhsachHH = listHangHoaMoiNhat();
+                }elseif($_GET['btn'] == "btn_ASC") {
+                    $danhsachHH = listHangHoa_ASC();
+                }elseif($_GET['btn'] == "btn_view_DESC") {
+                    $danhsachHH = listHangHoa_view_DESC();
+                }elseif($_GET['btn'] == "btn_price_DESC") {
+                    $danhsachHH = listHangHoa_price_DESC();
+                }
+                
+               
+            }
                 include "hangHoa/list.php";
             break;
 
@@ -194,36 +242,54 @@ if(isset($_GET['act'])) {
 
             //xóa loại hàng
         case 'deleteHH':
-            try {
+            if(isset($_POST['box']) && is_array($_POST['box'])) {
+                    $checkedAll = $_POST['box'];
+
+                    foreach($checkedAll as $checked) {
+                        deleteHangHoa($checked);
+                    }
+                }
+            
+                
+                
                 if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 deleteHangHoa($id);
+               
+                }
                 header("location: index.php?act=listHH");
-                }
-            } catch (Exception $e) {
-            ?>
-<script>
-let err = function() {
-    alert("Không thể xóa vì nó có liên kết khóa ngoại!")
-}
-err()
-</script>
-<?php
-                }
-
+                
             break;
 
         //Bình luận
+                //thêm bình luận
+        case 'addCMT':
+            $danhsachHH = listHangHoa();
+            if(isset($_POST['btn-add'])) {
+                
+                $maKhachHang = $_SESSION['user']['maKhachHang'];
+                $maHangHoa = $_POST['maHangHoa'];
+               
+                $ngayBinhLuan = $_POST['ngayBinhLuan'];
+                $noiDung = $_POST['noiDung'];
+               
+                addBinhLuan($maKhachHang, $maHangHoa, $ngayBinhLuan, $noiDung);
+                $noti = "Thêm thành công!";
+            }
+            include "binhLuan/add.php";
+            break;
             //danh sách bình luận
         case 'listCMT':
                 $danhsachCMT = listBinhLuan();
                 if(isset($_GET['btn'])) {
-                    if($_GET['btn'] == "btn_desc") {
-                         $danhsachCMT = listBinhLuan_desc();
-                    }elseif($_GET['btn'] == "btn_HH") {
-                        $danhsachCMT = listBinhLuan_HH();
+                    if($_GET['btn'] == "btn_DESC") {
+                        $danhsachCMT = listBinhLuan_DESC();
+                    }elseif($_GET['btn'] == "btn_ASC") {
+                        $danhsachCMT = listBinhLuan_ASC();
                     }elseif($_GET['btn'] == "btn_KH") {
                         $danhsachCMT = listBinhLuan_KH();
+                    }elseif($_GET['btn'] == "btn_HH") {
+                        $danhsachCMT = listBinhLuan_HH();
                     }
                     
                    

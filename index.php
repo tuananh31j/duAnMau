@@ -34,10 +34,6 @@ if(isset($_GET['act'])) {
             $targetSP =  list_hang_hoa_loai($id);
             $targetLH = selectLoaiHang_id($id);
            }
-            
-            
-          
-            
             include "view/product/listProduct.php";
             break;
 

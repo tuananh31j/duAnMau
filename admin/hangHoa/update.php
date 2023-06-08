@@ -2,7 +2,7 @@
 <div class="col mt-5">
     <div class="mt5">
 
-        <h1>Thêm hàng hóa:<?php if(isset($_POST['btn-add']))echo `<p>$noti</p>`;?></h1>
+        <h1>Chỉnh sửa hàng hóa:<?php if(isset($_POST['btn-add']))echo `<p>$noti</p>`;?></h1>
         <form action="index.php?act=updateHH" enctype="multipart/form-data" method="post">
             <!-- mã -->
             <input type="text" name="maHangHoa" hidden value="<?php echo $id ?>"><br>
@@ -63,15 +63,16 @@
 
             </div>
             <!-- btn -->
-            <input onclick="noti_update_HH()" type="submit" class="btn btn-primary" name="btn-update" value="Cập nhật"><br>
-            <br>
-            <input class="btn btn-info" type="reset" value="Nhập lại">
+            <div>
+                <input onclick="noti_update_HH()" type="submit" class="btn btn-primary" name="btn-update"
+                    value="Cập nhật">
+                <input class="btn btn-info" type="reset" value="Nhập lại">
+                <a class="btn btn-success text-dark" id="lh" href="index.php?act=listHH">Danh sách</a>
+            </div>
 
         </form>
         <br><br>
-        <div><button class="btn btn-success"><a class=" text-dark" id="lh" href="index.php?act=listHH">Danh
-                    sách</a></button>
-        </div>
+
 
     </div>
 </div>
