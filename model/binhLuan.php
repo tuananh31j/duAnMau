@@ -36,6 +36,12 @@ function delete_cmt($id) {
     pdo_execute($sql);
 }
 
+//xóa bình luận theo id khách hàng
+function delete_cmt_KH($id) {
+    $sql ="delete from binhLuan where maKhachHang = $id";
+    pdo_execute($sql);
+}
+
 //thêm bình luận
 function addBinhLuan($maKhachHang, $maHangHoa, $ngayBinhLuan, $noiDung) {
     $sql = "insert into binhLuan(maKhachHang, maHangHoa, ngayBinhLuan, noiDung) values(?, ?, ?, ?)";

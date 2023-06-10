@@ -12,7 +12,7 @@
             <!-- chọn hàng hóa -->
             <div class="mb-3">
                 <label for="maHangHoa" class="form-label">Chọn hàng hóa:</label><br>
-                <select name="maHangHoa" id="">
+                <select name="maHangHoa" class="border rounded p-2" id="">
                     <?php foreach($danhsachHH as $ds) { ?>
                     <option value="<?php echo $ds["maHangHoa"] ?>"><?php echo $ds["tenHangHoa"] ?></option>
                     <?php } ?>
@@ -22,8 +22,8 @@
 
             <!-- ngày -->
             <div class="mb-3">
-                <label for="ngayBinhLuan" class="form-label">Ngày bình luận:</label>
-                <input type="date" name="ngayBinhLuan" class="form-control">
+                <label for="ngayBinhLuan" class="form-label ">Ngày bình luận:</label><br>
+                <input type="date" name="ngayBinhLuan" class="border rounded p-2">
             </div>
 
 

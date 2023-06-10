@@ -14,22 +14,22 @@
                 <div id="carouselExampleDark" class="carousel carousel-dark slide  container-fluid">
 
                     <div class="carousel-inner" data-bs-ride="carousel">
-                        <div class="carousel-item active" data-bs-interval="1000">
-                            <img src="img/banner1.jpg" class="img-thumbnail" alt="...">
+                        <div class="carousel-item active " data-bs-interval="1000">
+                            <img  src="img/banner1.jpg" class="bn__img" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Xphone</h5>
                                 <p>Camera siêu nét thỏa sức sáng tạo</p>
                             </div>
                         </div>
                         <div class="carousel-item" data-bs-interval="3000">
-                            <img src="img/banner2.jpg" class="img-thumbnail" alt="...">
+                            <img  src="img/banner2.jpg" class="bn__img" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Xphone</h5>
                                 <p>Camera siêu nét thỏa sức sáng tạo</p>
                             </div>
                         </div>
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img src="img/banner3.jpg" class="img-thumbnail" alt="...">
+                            <img  src="img/banner3.jpg" class="bn__img" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Xphone</h5>
                                 <p>Camera siêu nét thỏa sức sáng tạo</p>

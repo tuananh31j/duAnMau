@@ -17,6 +17,18 @@ let btnCheckAll = document.querySelector("#btn_Check_All");
 let isCheckAll = false;
 
 
+let tK = document.getElementById("TK");
+let navTK = document.getElementById("nav__thongKe");
+
+
+
+function showMenuTK() {
+
+    navTK.classList.toggle("d-none");
+}
+
+tK.addEventListener("click", showMenuTK);
+
 
 //thông báo đăng ký tài khoản thành công
 function noti_signup() {
@@ -69,5 +81,13 @@ function checkAll() {
 
 
 
+
 btnCheckAll.addEventListener("click", checkAll);
+
+
+
+
+//chart
+
+google.charts.setOnLoadCallback(drawChart);
 

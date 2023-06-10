@@ -10,22 +10,29 @@
                             
                             ?>
 
-        <a href="index.php?act=detailsSP&id=<?php echo $product['maHangHoa'] ?>">
+        <a
+            href="index.php?act=detailsSP&id=<?php echo $product['maHangHoa'] ?>&luotXem=<?php echo $product['soLuotXem'] + 1; ?>">
             <div class="col">
                 <div class="card h-100">
                     <img src="img/<?php echo $product['anh']?>" class="card-img-top"
                         alt="<?php echo $product['tenHangHoa']?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $product['tenHangHoa']?></h5>
+                        <h4 class="card-title"><?php echo $product['tenHangHoa']?></h4>
+                        <h5 class=" text-warning"><?php echo $product['donGia']?>VNĐ</h5>
                         <p class="card-text"><?php echo $product['moTa']?></p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><?php echo $product['ngayNhap']?>|<span id="sale">sale:
-                                <?php echo $product['giamGia'] ?></span></small>
+                        <small class="text-body-secondary"><?php echo $product['ngayNhap']?>|<?php if($product['giamGia'] > 1){
+                            echo '<span id="sale">sale: '.$product["giamGia"] ;
+                        }else{
+                            echo '';
+                        } ?>
+                            </span></small>
                     </div>
                 </div>
             </div>
         </a>
+
 
         <?php
                         }

@@ -43,9 +43,15 @@ if(isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 
-                $targetSP = list_hang_hoa_loai($id);
+                
                 $targetSP_id = list_hang_hoa_id($id);
+                $targetSP_loai = list_hang_hoa_loai($targetSP_id['maLoai']);
+                if(isset($_GET['luotXem']) && $_GET['luotXem'] > 0) {
+                    $luotXem = $_GET['luotXem'];
+                    luotXem($id,$luotXem);
+                }
             }
+            
             include "view/productDetails/details.php";
             break;
         
@@ -135,7 +141,7 @@ if(isset($_GET['act'])) {
         $noti = "Thông tin sai!";
         }
     }
-   
+    $top10LuotXem = top10LuotXem();
     $newProduct = listHangHoaMoiNhat();
     $dataLH = listLoaiHang();
     include "view/home.php";

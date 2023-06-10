@@ -8,13 +8,14 @@
             <div class="card mb-3" style="max-width: 940px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img id="img-detail" src="img/t3.jpg" class="img-fluid rounded-start" alt="...">
+                        <img id="img-detail" src="img/<?php echo $targetSP_id['anh']?>" class="img-fluid rounded-start"
+                            alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><?php  echo $targetSP_id['tenHangHoa'] ?></h5>
                             <p class="card-text"><?php echo $targetSP_id['moTa'] ?></p>
-                            <p><?php echo $targetSP_id['donGia'] ?></p>
+                            <h6 class="text-warning"><?php echo $targetSP_id['donGia'] ?></h6>
                             <p class="card-text"><small
                                     class="text-body-secondary"><?php echo $targetSP_id['ngayNhap'] ?></small>
                             </p>
@@ -46,20 +47,22 @@
                 <div class="row row-cols-1 row-cols-md-5 g-4">
 
                     <?php
-                            foreach($targetSP as $sp){
+                                foreach($targetSP_loai as $sp){
 
-                            ?>
-                    <div class="col">
-                        <div class="card text-bg-dark">
-                            <img src="img/t1.jpg" class="card-img" alt="img/t1.jpg">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title"><?php echo $sp['tenHangHoa'] ?></h5>
-                                <p class="card-text"><?php echo $sp['moTa'] ?></p>
-                                <p class="card-text"><small><?php echo $sp['ngayNhap'] ?>|<span id="sale">sale:
-                                            <?php echo $sp['giamGia'] ?></span></small></p>
+                        ?>
+                    <a
+                        href="index.php?act=detailsSP&id=<?php echo $sp['maHangHoa'] ?>&luotXem=<?php echo $sp['soLuotXem'] + 1; ?>">
+                        <div class="col">
+                            <div class="card text-bg-dark text-danger">
+                                <img src="img/<?php echo $sp['anh'] ?>" class="card-img" alt="">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title"><?php echo $sp['tenHangHoa'] ?></h5>
+                                    <p class="card-text"><?php echo $sp['moTa'] ?></p>
+                                    <p class="card-text"><small><?php echo $sp['ngayNhap'] ?></small></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <?php
                             }
                             ?>
@@ -70,9 +73,8 @@
         </main>
 
     </div>
-    <div class="d-flex align-items-start">
 
-    </div>
+</div>
 
 
 

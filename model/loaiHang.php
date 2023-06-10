@@ -58,4 +58,15 @@ function deleteLoaiHang($id) {
     $sql = "delete from loai where maLoai = $id";
     pdo_execute($sql);
 }
+
+//thông kê theo loại hàng
+function list_thongKe_LH() {
+    $sql = "SELECT loai.maLoai as mLoai, loai.tenLoai AS tLoai, COUNT(hangHoa.maHangHoa) AS slHH, ";
+    $sql .= "MAX(hangHoa.donGia) AS maxHH, MIN(hangHoa.donGia) AS minHH, ";
+    $sql .= "AVG(hangHoa.donGia) AS tbHH ";
+    $sql .= "FROM hangHoa INNER JOIN loai ON loai.maLoai = hangHoa.maLoai ";
+    $sql .= "GROUP BY loai.maLoai ORDER BY loai.maLoai ASC";
+
+    return pdo_query($sql);
+}
 ?>

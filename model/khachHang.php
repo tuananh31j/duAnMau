@@ -5,9 +5,9 @@ function addKhachHang($email,$tenKhachHang,$matKhau) {
     pdo_execute($sql,$email,$tenKhachHang,$matKhau);
 }
 
-function addKhachHang_ad($tenKhachHang, $matKhau, $email, $anh, $vaiTro  ) {
-    $sql = 'insert into khachHang(email, tenKhachhang, matKhau, anh, vaiTro) values(?, ?, ?,?,?)';
-    pdo_execute($sql,$email,$tenKhachHang,$matKhau, $anh, $vaiTro);
+function addKhachHang_ad($tenKhachHang, $matKhau, $email, $vaiTro, $anh) {
+    $sql = 'insert into khachHang(email, tenKhachhang, matKhau, vaiTro, anh) values(?, ?, ?,?,?)';
+    pdo_execute($sql,$email,$tenKhachHang,$matKhau, $vaiTro, $anh);
 }
 
 //danh sach khach hang
@@ -44,11 +44,13 @@ function listAdmin(){
 //chọn khách hàng theo id
 function selectKhachHang_id($id){
     $sql= "select * from khachHang where maKhachHang = $id";
+
     return pdo_query_one($sql);
 }
 //xóa khách hàng
 function deleteKhachHang($id){
     $sql = "delete from khachHang where maKhachHang = $id";
+    
     pdo_execute($sql);
 }
 
@@ -72,7 +74,11 @@ function updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang) {
 
 //cập nhập tài khoản bên admin
 function updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang) {
-    $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ?, kichHoat = ?, vaiTro = ? where maKhachHang = ?";
-    pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang);
+    $sql = "update khachHang set tenKhachHang = ?, matKhau = ?, anh = ?, email = ?, kichHoat = ?, vaiTro = b? where maKhachHang = ?";
+    pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email ,$kichHoat , $vaiTro, $maKhachHang);
 }
+
+
+
+
 ?>

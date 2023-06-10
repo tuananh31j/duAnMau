@@ -3,6 +3,10 @@
     <div class="mt5">
 
         <h1>Chỉnh sửa hàng hóa:<?php if(isset($_POST['btn-add']))echo `<p>$noti</p>`;?></h1>
+
+        <div class="col-1">
+            <img class="img-fluid " src="../img/<?php echo $targetHH['anh'] ?>" alt="">
+        </div>
         <form action="index.php?act=updateHH" enctype="multipart/form-data" method="post">
             <!-- mã -->
             <input type="text" name="maHangHoa" hidden value="<?php echo $id ?>"><br>

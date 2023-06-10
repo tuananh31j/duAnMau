@@ -25,7 +25,7 @@
             <a href="index.php?act=forgotPass">Quên mật khẩu</a>
             <?php if($_SESSION['user']['vaiTro'] == 1) {
         ?>
-            <a id="ad" href="admin/">Trang Quản trị</a>
+            <a id="ad" href="admin/">Trang Quản trị <span class="fa-solid fa-arrow-right text-dark"></span></a>
             <?php } ?>
             <a href="index.php?act=dangXuat">Đăng xuất</a>
         </div>

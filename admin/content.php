@@ -1,6 +1,6 @@
 <!-- main content -->
 <div class="col mt-5">
-    Bạn đang ở trang điều khiển
+    <h1 class="text-center text-dark">Trang điều khiển dành cho Admin</h1>
 </div>
 
 </div>

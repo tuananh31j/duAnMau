@@ -1,5 +1,5 @@
 <!-- main content -->
-<div class="col mt-5 text-center">
+<div class="col mt-5 text-center ">
     <h1>Danh sách bình luận:</h1>
     <div class="list_lh mt-5">
         <?php if(isset($noti) && $noti != '') {
@@ -8,7 +8,7 @@
         <p><?php echo $noti ?></p>
         <?php } 
             ?>
-        <table id="table" class="table table-striped">
+        <table id="table" class="table table-striped ">
             <thead class="bg-success">
                 <tr>
                     <td>Chọn</td>

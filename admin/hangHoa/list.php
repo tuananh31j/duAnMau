@@ -32,7 +32,7 @@
                         <td><?php echo $ds["maHangHoa"] ?></td>
                         <td><?php echo $ds["tenHangHoa"] ?></td>
                         <td><?php echo $ds["donGia"] ?></td>
-                        <td><?php echo $ds["anh"] ?></td>
+                        <td><img class="img-fluid" src="../img/<?php echo $ds["anh"] ?>" alt=""></td>
                         <td><?php echo $ds["ngayNhap"] ?></td>
                         <td><?php echo $ds["dacBiet"] ?></td>
                         <td><?php echo $ds["moTa"] ?></td>

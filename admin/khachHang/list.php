@@ -8,7 +8,7 @@
         <p><?php echo $noti ?></p>
         <?php } 
 ?>
-        <table id="table" class="table table-striped">
+        <table id="table" class="table table-striped ">
             <thead class="bg-success">
                 <tr>
                     <td>Chọn</td>
@@ -34,7 +34,8 @@
                         <td><?php echo $ds["maKhachHang"] ?></td>
                         <td><?php echo $ds["tenKhachHang"] ?></td>
                         <td><?php echo $ds["email"] ?></td>
-                        <td><?php echo $ds["anh"] ?></td>
+                        <td class="col-1"><img class="img-fluid" src="../img/<?php echo $ds["anh"] ?>" alt="">
+                        </td>
                         <td><?php echo $ds["vaiTro"] ?></td>
                         <td><a href="index.php?act=updateKH&id=<?php echo $ds['maKhachHang'] ?>">Sửa</a>|
                             <a href="index.php?act=deleteKH&id=<?php echo $ds['maKhachHang'] ?>">Xóa</a>

@@ -1,10 +1,10 @@
 <!-- main content -->
 <div class="col mt-5">
-    <div class="mt-5">
+    <div class="row mt-5">
         <h1>Sửa thông tin khách hàng:</h1>
 
-        <div>
-            <img src="../img/<?php echo $targetKH['anh'] ?>" alt="">
+        <div class="col-1">
+            <img class="img-fluid " src="../img/<?php echo $targetKH['anh'] ?>" alt="">
         </div>
         <?php
 
@@ -14,12 +14,12 @@
 
         <form action="index.php?act=updateKH" enctype="multipart/form-data" method="post">
             <!-- mã -->
-            <input type="text" name="maKhachHang" hidden disabled placeholder="mã loại"
-                value="<?php echo $maKhachHang ?>"><br>
+            <input type="text" name="maKhachHang" hidden placeholder="mã loại" value="<?php echo $id ?>"><br>
+            <!-- tên -->
             <div class="mb-3">
                 <label class="form-label" for="tenKhachHang">Tên khách hàng</label>
                 <input type="text" name="tenKhachHang" class="form-control"
-                    value="<?php echo $targetKH['tenKhachHang']?>">
+                    value="<?php  echo isset($targetKH['tenKhachHang'])?$targetKH['tenKhachHang']:''?>">
 
             </div>
             <!-- mật khẩu -->
@@ -58,9 +58,9 @@
 
             </div>
             <!-- btn -->
-            <input class="btn btn-primary" type="submit" name="btn-update" value="Cập nhật"><br>
-            <input type="reset" value="Nhập lại">
-            <a id="lh" href="index.php?act=listKH">Danh sách</a>
+            <input class="btn btn-primary" type="submit" name="btn-update" value="Cập nhật">
+            <input class="btn bg-warning" type="reset" value="Nhập lại">
+            <a class="btn bg-success" id="lh" href="index.php?act=listKH">Danh sách</a>
 
 
         </form>

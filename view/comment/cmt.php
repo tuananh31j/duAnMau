@@ -55,10 +55,11 @@ if(isset($_POST['btn-cmt']) && isset($_SESSION['user'])) {
 
 
              ?>
-            <li class="nav-link active" aria-current="page"><img class="cmt-img"
-                    src="../../img/<?php echo $cmt['anh'] ?>" alt="">
-                <span class="cmt-per"><?php echo $cmt['tenKhachHang'] ?>: <span
-                        class="cmt-content"><?php echo $cmt['noiDung'] ?></span></span>
+            <li class="nav-link active" aria-current="page">
+                <div><img class="cmt-img" src="../../img/<?php echo $cmt['anh'] ?>" alt="">
+                    <span class="cmt-per"><?php echo $cmt['tenKhachHang'] ?>: <span
+                            class="cmt-content"><?php echo $cmt['noiDung'] ?></span></span>
+                </div>
                 <p><?php echo $cmt['ngayBinhLuan'] ?></p>
             </li>
 

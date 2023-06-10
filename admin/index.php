@@ -4,6 +4,7 @@ include "../model/hangHoa.php";
 include "../model/loaiHang.php";
 include "../model/khachHang.php";
 include "../model/binhLuan.php";
+include "../global.php";
 session_start();
 include "header.php";
 
@@ -59,20 +60,32 @@ if(isset($_GET['act'])) {
 
             //xóa loại hàng
         case 'deleteLH':
-
+            try{
             if(isset($_POST['box']) && is_array($_POST['box'])) {
-                $checkedAll = $_POST['box'];
+                        $checkedAll = $_POST['box'];
 
-                foreach($checkedAll as $checked) {
-                    deleteLoaiHang($checked);
-                }
+                        foreach($checkedAll as $checked) {
+                            deleteLoaiHang($checked);
+                        }
+                    }
+                    header("location: index.php?act=listLH");
+            }catch(Exception $e) {
+            $err = "Có liên lết khóa ngoại không thể xóa!";
+            include "../err.php";
+            header("location: ../err.php");
             }
+            try{
                 if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 deleteLoaiHang($id);
                 }
+                header("location: index.php?act=listLH");
+            }catch(Exception $e) {
+                $err = "Có liên lết khóa ngoại không thể xóa!";
+                include "../err.php";
+                header("location: ../err.php");
+                }
             
-            header("location: index.php?act=listLH");
             
             break;
 
@@ -87,15 +100,15 @@ if(isset($_GET['act'])) {
                 $tenKhachHang = $_POST['tenKhachHang'];
                 $matKhau = $_POST['matKhau'];
                 $email = $_POST['email'];
-                if(isset($_FILES)) {
+                if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh = $_FILES['anh']['name'];
-                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
                 }else{
                     $anh = 'anhcuaban.png';
                 }
                 
                 $vaiTro = $_POST['vaiTro'];
-                addKhachHang($tenKhachHang, $matKhau, $email, $anh, $vaiTro  );
+                addKhachHang_ad($tenKhachHang, $matKhau, $email, $anh, $vaiTro);
                 $noti = "Thêm thành công!";
             }
             include "khachHang/add.php";
@@ -121,6 +134,7 @@ if(isset($_GET['act'])) {
             break;
             //xóa khách hàng
         case 'deleteKH':
+        try{ 
             if(isset($_POST['box']) && is_array($_POST['box'])) {
                 $checkedAll = $_POST['box'];
 
@@ -128,14 +142,34 @@ if(isset($_GET['act'])) {
                     deleteKhachHang($checked);
                 }
             }
-       
-             if(isset($_GET['id'])) {
-                $id = $_GET['id'];
-                deleteKhachHang($id);
-                }
-      
             header("location: index.php?act=listKH");
-            
+        }catch(Exception $e) {
+        $err = "Có liên kết khóa ngoại không thể xóa!";
+        include "../err.php";
+        header("location: ../err.php");
+        }
+       try{
+             if(isset($_GET['id'])) {
+                
+                $id = $_GET['id'];
+                $KH= selectKhachHang_id($id);
+                if($KH['vaiTro'] == 0) {
+                    delete_cmt_KH($id);
+                deleteKhachHang($id);
+                } else{
+                    $err ="Không thể xóa admin";
+                    include "../err.php";
+                    header("location: ../err.php");
+                    break;
+                }
+                
+                }
+                header("location: index.php?act=listKH");
+            }catch(Exception $e) {
+            $err = "Có liên lết khóa ngoại không thể xóa!";
+            include "../err.php";
+            header("location: ../err.php");
+            }
             break;
             //chỉnh sửa thông tin khách hàng
         case 'updateKH':
@@ -143,21 +177,23 @@ if(isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = (int)$_GET['id'];
                 $targetKH = selectKhachHang_id($id);
+                $_SESSION['updateUser'] = selectKhachHang_id($id);
             }
             if(isset($_POST['btn-update'])&&$_POST['btn-update']) {
                 $maKhachHang = (int)$_POST['maKhachHang'];
                 $tenKhachHang= $_POST['tenKhachHang'];
-                $maKhau= $_POST['maKhau'];
+                $matKhau= $_POST['matKhau'];
                 $email= $_POST['email'];
-                if(isset($_FILES)) {
+                $kichHoat= $_POST['kichHoat'];
+                $vaiTro= (int)$_POST['vaiTro'];
+                if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh= $_FILES['anh']['name'];
-                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
                 }else{
-                    $anh = $targetKH['anh'];
+                    $anh = $_SESSION['updateUser']['anh'];
                 }
                 
-                $kichHoat= $_POST['kichHoat'];
-                $vaiTro= $_POST['vaiTro'];
+               
                 updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang);
                 $noti = 'cập nhật thành công!';
             }
@@ -170,7 +206,7 @@ if(isset($_GET['act'])) {
             $danhsachHH = listHangHoa();
             if(isset($_GET['btn'])) {
                 if($_GET['btn'] == "btn_DESC") {
-                    $danhsachHH = listHangHoaMoiNhat();
+                    $danhsachHH = listHangHoaMoiNhat_ad();
                 }elseif($_GET['btn'] == "btn_ASC") {
                     $danhsachHH = listHangHoa_ASC();
                 }elseif($_GET['btn'] == "btn_view_DESC") {
@@ -190,7 +226,7 @@ if(isset($_GET['act'])) {
             if(isset($_POST['btn-add'])) {
                 $tenHangHoa = $_POST['tenHangHoa'];
                 $donGia = $_POST['donGia'];
-                $anh = $_FILES['anh']['name'];
+               
                 $ngayNhap = $_POST['ngayNhap'];
                 $Loai = $_POST['tenLoai'];
                 $moTa = $_POST['moTa'];
@@ -198,7 +234,7 @@ if(isset($_GET['act'])) {
                 
                 if(isset($_FILES)) {
                     $anh = $_FILES['anh']['name'];
-                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
                 }else{
                     $anh = 'default.png';
                 }
@@ -215,22 +251,23 @@ if(isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = (int)$_GET['id'];
                 $targetHH = list_hang_hoa_id($id);
+                $_SESSION['pro'] = list_hang_hoa_id($id);
             }
             if(isset($_POST['btn-update'])&& $_POST['btn-update']) {
                 $maHangHoa = (int)$_POST['maHangHoa'];
                 $tenHangHoa = $_POST['tenHangHoa'];
                 $donGia = $_POST['donGia'];
-                $anh = $_FILES['anh']['name'];
+                
                 $ngayNhap = $_POST['ngayNhap'];
                 $Loai = $_POST['tenLoai'];
                 $moTa = $_POST['moTa'];
                 $giamGia = $_POST['giamGia'];
                 
-                if(isset($_FILES)) {
+                if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh = $_FILES['anh']['name'];
-                    move_uploaded_file($_FILES['anh']['tmp_name'], "img/$anh");
+                    move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
                 }else{
-                    $anh = $targetHH['anh'];
+                    $anh = $_SESSION['pro']['anh'];
                 }
                 
                 
@@ -242,6 +279,7 @@ if(isset($_GET['act'])) {
 
             //xóa loại hàng
         case 'deleteHH':
+            try{
             if(isset($_POST['box']) && is_array($_POST['box'])) {
                     $checkedAll = $_POST['box'];
 
@@ -249,15 +287,26 @@ if(isset($_GET['act'])) {
                         deleteHangHoa($checked);
                     }
                 }
+                header("location: index.php?act=listHH");
+            }catch(Exception $e) {
+            $err = "Có liên lết khóa ngoại không thể xóa!";
+            include "../err.php";
+            header("location: ../err.php");
+            }
             
                 
-                
+            try{
                 if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 deleteHangHoa($id);
                
                 }
                 header("location: index.php?act=listHH");
+            }catch(Exception $e) {
+            $err = "Có liên lết khóa ngoại không thể xóa!";
+            include "../err.php";
+            header("location: ../err.php");
+            }
                 
             break;
 
@@ -315,7 +364,34 @@ if(isset($_GET['act'])) {
                 header("location: index.php?act=listCMT");
                 
                 break;
-
+        case 'thongKe':
+            if(isset($_GET['name'])) {
+                $name=$_GET['name'];
+                //thông kê loại hàng
+                if($name == 'LH') {
+                    $danhsachTKLH = list_thongKe_LH();
+                    include "thongKe/loaiHang.php";
+                //thống kê hàng hoa
+                }elseif($name == 'HH') {
+                    $danhsachTKHH = list_thongKe_HH();
+                    include "thongKe/hangHoa.php";
+                }
+            }
+            
+            
+            
+            break;     
+        case 'chartLH':
+            $danhsachTKLH = list_thongKe_LH();
+            include "thongKe/chartLH.php";
+            
+            break;
+        
+            case 'chartHH':
+                $danhsachTKHH = list_thongKe_HH();
+                include "thongKe/chartHH.php";
+                
+                break;
         default:
             include "content.php";
             break;

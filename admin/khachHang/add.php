@@ -27,8 +27,8 @@
             </div>
             <!-- anh -->
             <div class="mb-3">
-                <label for="anh" class="form-label">Tên khách hàng</label>
-                <input type="file" name="anh" placeholder="Ảnh đại diện" class="form-control">
+                <label for="anh" class="form-label">Ảnh đại diện</label>
+                <input type="file" name="anh" class="form-control">
 
             </div>
             <!-- vai trò -->

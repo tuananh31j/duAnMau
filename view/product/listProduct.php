@@ -45,19 +45,23 @@
                     
                         ?>
 
-                        <a href="index.php?act=detailsSP&id=<?php echo $sP['maHangHoa'] ?>">
+                        <a
+                            href="index.php?act=detailsSP&id=<?php echo $sP['maHangHoa'] ?>&luotXem=<?php echo $sP['soLuotXem'] + 1; ?>">
                             <div class="col">
                                 <div class="card h-100">
                                     <img src="img/<?php echo $sP['anh'] ?>" class="card-img-top"
                                         alt="<?php echo $sP['tenHangHoa'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?php echo $sP['tenHangHoa'] ?> </h5>
+                                        <h4 class="card-title"><?php echo $sP['tenHangHoa'] ?> </h4>
+                                        <h5 class=" text-warning"><?php echo $sP['donGia']?>VNĐ</h5>
                                         <p class="card-text"><?php echo $sP['moTa'] ?></p>
                                     </div>
                                     <div class="card-footer">
-                                        <small class="text-body-secondary"><?php echo $sP['ngayNhap'] ?>|<span
-                                                id="sale">sale:
-                                                <?php echo $sP['giamGia'] ?></span></small>
+                                        <small class="text-body-secondary"><?php echo $sP['ngayNhap'] ?>|<?php if($sP['giamGia'] > 1){
+                            echo '<span id="sale">sale: '.$sP["giamGia"] ;
+                        }else{
+                            echo '';
+                        } ?></span></small>
                                     </div>
                                 </div>
 
