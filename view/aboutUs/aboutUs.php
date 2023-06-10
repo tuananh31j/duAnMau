@@ -1,23 +1,23 @@
 </header>
 <!-- main content -->
 
-<div class="main-content">
+<div class="container">
     <!-- about us -->
     <!-- main -->
-    <main class="about">
-        <img src="img/banner2.jpg" alt="">
-        <div class="negative">
-            <div class="title">
+    <main class="about ">
+        <div style="height: 900px;">
+            <img class="h-70" src="img/banner2.jpg" alt="">
+        </div>
+
+        <div class="">
+            <div class="text-center">
                 Trang web bán điện thoại Việt Nam
             </div>
             <div class="content">
-                <p>Sáng 29/5, ông Phạm Viết Thanh, Ủy viên Trung ương Đảng, Bí thư Tỉnh ủy, Chủ tịch HĐND tỉnh;
-                    ông
-                    Nguyễn
-                    Văn Thọ, Phó Bí thư Tỉnh ủy, Chủ tịch UBND tỉnh, chủ trì hội nghị Ban Chấp hành Đảng bộ tỉnh
-                    để
-                    cho
-                    ý kiến về Quy hoạch tỉnh Bà Rịa-Vũng Tàu thời kỳ 2021 - 2030, tầm nhìn đến năm 2050.</p>
+                <p class="fs-1">X-Shop là một chuỗi cửa hàng nhỏ trên khắp cả nước, kinh doanh mặt điện tử.
+                    Hiện cửa hàng muốn kết hợp giữa buôn bán online và offline nhằm cải thiện và nâng cao chất lượng
+                    phục vụ, cũng như thu nhận phản hồi từ người tiêu dùng một cách rõ ràng
+                </p>
             </div>
         </div>
 

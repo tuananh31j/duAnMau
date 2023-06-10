@@ -1,18 +1,22 @@
 <div>
-    <h1>Quên mật khẩu</h1>
-    <div>
+    <h1 class="text-center">Quên mật khẩu</h1>
+    <div class="container">
+
+
         <form action="index.php?act=forgotPass" method="post">
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email">
+            <div class="mb-3">
+                <label class="form-label " for="email">Email</label>
+                <input type="email" class="form-control" name="email">
+
             </div>
-            <div>
-                <label for="tenKhachHang">Tên người dùng</label>
-                <input type="text" name="tenKhachHang">
+            <div class="mb-3">
+                <label class="form-label" for="tenKhachHang">Tên người dùng</label>
+                <input type="text" name="tenKhachHang" class="form-control">
             </div>
 
-            <input type="submit" name="btn-getPass" value="Gửi">
-            <input type="reset" value="Nhập lại">
+            <input class="btn btn-primary" type="submit" name="btn-getPass" value="Gửi">
+            <input class="btn btn-success" type="reset" value="Nhập lại">
+
         </form>
         <br>
         <hr>

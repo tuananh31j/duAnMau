@@ -13,13 +13,13 @@
         <a
             href="index.php?act=detailsSP&id=<?php echo $product['maHangHoa'] ?>&luotXem=<?php echo $product['soLuotXem'] + 1; ?>">
             <div class="col">
-                <div class="card h-100">
-                    <img src="img/<?php echo $product['anh']?>" class="card-img-top"
+                <div style="height: 900px;" class="card">
+                    <img class="h-50" src="img/<?php echo $product['anh']?>" class="card-img-top"
                         alt="<?php echo $product['tenHangHoa']?>">
                     <div class="card-body">
                         <h4 class="card-title"><?php echo $product['tenHangHoa']?></h4>
                         <h5 class=" text-warning"><?php echo $product['donGia']?>VNĐ</h5>
-                        <p class="card-text"><?php echo $product['moTa']?></p>
+                        <p class="card-text"><?php echo $product['moTa']?>...xem thêm</p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary"><?php echo $product['ngayNhap']?>|<?php if($product['giamGia'] > 1){

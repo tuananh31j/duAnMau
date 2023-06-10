@@ -1,21 +1,21 @@
 <div>
-    <h1>Đăng ký tài khoản</h1>
-    <div>
+    <h1 class="text-center">Đăng ký tài khoản</h1>
+    <div class="container">
         <form action="index.php?act=dangKy" method="post">
             <div>
-                <label for="email">Email</label>
-                <input type="email" name="email">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" name="email">
             </div>
             <div>
-                <label for="tenKhachHang">tenKhachHang</label>
-                <input type="text" name="tenKhachHang">
+                <label class="form-label" for="tenKhachHang">Tên người dùng</label>
+                <input class="form-control" type="text" name="tenKhachHang">
             </div>
             <div>
-                <label for="matKhau">matKhau</label>
-                <input type="password" name="matKhau">
+                <label class="form-label" for="matKhau">Mật khẩu</label>
+                <input class="form-control" type="password" name="matKhau">
             </div>
-            <input onclick="noti_signup()" type="submit" name="btn-dk" value="Đăng ký">
-            <input type="reset" value="Nhập lại">
+            <input class="btn bg-info text-light" onclick="noti_signup()" type="submit" name="btn-dk" value="Đăng ký">
+            <input class="btn bg-success text-light" type="reset" value="Nhập lại">
         </form>
         <?php 
         if(isset($thongbao)&& $thongbao!='' && isset($_POST['btn-dk'])) {

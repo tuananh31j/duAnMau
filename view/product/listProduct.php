@@ -48,13 +48,13 @@
                         <a
                             href="index.php?act=detailsSP&id=<?php echo $sP['maHangHoa'] ?>&luotXem=<?php echo $sP['soLuotXem'] + 1; ?>">
                             <div class="col">
-                                <div class="card h-100">
-                                    <img src="img/<?php echo $sP['anh'] ?>" class="card-img-top"
+                                <div style="height: 900px;" class="card">
+                                    <img class="h-50" src="img/<?php echo $sP['anh'] ?>" class="card-img-top"
                                         alt="<?php echo $sP['tenHangHoa'] ?>">
                                     <div class="card-body">
                                         <h4 class="card-title"><?php echo $sP['tenHangHoa'] ?> </h4>
                                         <h5 class=" text-warning"><?php echo $sP['donGia']?>VNĐ</h5>
-                                        <p class="card-text"><?php echo $sP['moTa'] ?></p>
+                                        <p class="card-text"><?php echo $sP['moTa'] ?>...xem thêm</p>
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-body-secondary"><?php echo $sP['ngayNhap'] ?>|<?php if($sP['giamGia'] > 1){
