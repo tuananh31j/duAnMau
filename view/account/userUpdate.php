@@ -1,7 +1,10 @@
-<div>
+<div class="mb-5">
+
     <h1 class="text-center mt-4">Cập nhật thông tin cá nhân</h1>
     <div class="text-center m-4">
         <img class="user-img" src="img/<?php echo $_SESSION['user']['anh'] ?>" alt="">
+        <br>
+        <?php  echo isset($noti)?'<p class= "fs-3 text-danger">'.$noti.'</p>':"" ?>
     </div>
     <div class="container">
         <form action="index.php?act=userUpdate" enctype="multipart/form-data" method="post">
@@ -33,7 +36,9 @@
             <button onclick="noti_update_ac()" type="submit" name="btn-userUpdate" class="btn btn-primary">Cập
                 nhật</button>
             <button type="reset" class="btn btn-success">Nhập lại</button>
+            <a class="ps-3" href="index.php">Quay về trang chủ.<i class="fa-solid fa-arrow-right"></i></a>
         </form>
+
     </div>
 
 </div>

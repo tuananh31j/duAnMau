@@ -61,7 +61,7 @@
                             class="btn btn-warning">Nhiều lượt xem nhất</a>
                         <!-- đơn giá cao nhất -->
                         <a onclick="setColor(donGia)" href="index.php?act=listHH&btn=btn_price_DESC" type="button"
-                            class="btn btn-info">Đơn giá cao nhất</a>
+                            class="btn btn-info">Giá cao nhất</a>
                         <!-- thêm -->
                         <a href="index.php?act=addHH" class="btn btn-success">Thêm</a>
                     </div>

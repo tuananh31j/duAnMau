@@ -14,7 +14,7 @@
             href="index.php?act=detailsSP&id=<?php echo $product['maHangHoa'] ?>&luotXem=<?php echo $product['soLuotXem'] + 1; ?>">
             <div class="col">
                 <div style="height: 900px;" class="card">
-                    <p>Lượt xem: <?php echo $product['soLuotXem'] ?></p>
+                    <p class="bg-danger text-light">Lượt xem: <?php echo $product['soLuotXem'] ?></p>
                     <img class="h-50" src="img/<?php echo $product['anh']?>" class="card-img-top"
                         alt="<?php echo $product['tenHangHoa']?>">
                     <div class="card-body">

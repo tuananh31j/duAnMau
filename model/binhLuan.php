@@ -5,6 +5,20 @@ function listBinhLuan(){
     return pdo_query($sql);
 }
 
+function targetCMT_KH_HH($id){
+    $sql = "select binhLuan.maBinhLuan as idCMT,";
+    $sql .= "binhLuan.noiDung as ndCMT, binhLuan.ngayBinhLuan as dateCMT, hangHoa.maHangHoa as idHH,";
+    $sql .= "hangHoa.tenHangHoa as nameHH, hangHoa.donGia as priceHH, ";
+    $sql .= "hangHoa.anh as anhHH, hangHoa.ngayNhap as dateHH, hangHoa.soLuotXem as viewHH, ";
+    $sql .= "hangHoa.moTa as moTaHH, hangHoa.giamGia as saleHH, khachHang.maKhachHang as idKH, ";
+    $sql .= "khachHang.tenKhachHang as nameKH, khachHang.email as emailKH, khachHang.anh as anhKH, ";
+    $sql .= "khachHang.vaiTro as vaiTroKH from binhLuan ";
+    $sql .= "inner join khachHang on khachHang.maKhachHang = binhLuan.maKhachHang ";
+    $sql .= "inner join hangHoa on hangHoa.maHangHoa = binhLuan.maHangHoa where binhLuan.maBinhLuan = $id";
+    return pdo_query_one($sql);
+}
+
+
 //danh sách bình luận mới nhất
 function listBinhLuan_DESC() {
     $sql = "select * from binhLuan order by maBinhLuan desc";

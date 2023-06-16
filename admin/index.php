@@ -364,6 +364,15 @@ if(isset($_GET['act'])) {
                 header("location: index.php?act=listCMT");
                 
                 break;
+            //chi tiết bình luận
+        case 'detailsCMT':
+    
+            if(isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $targetCMT =  targetCMT_KH_HH($id);
+                }
+            include "binhLuan/details.php";
+            break;
         case 'thongKe':
             if(isset($_GET['name'])) {
                 $name=$_GET['name'];
@@ -378,20 +387,19 @@ if(isset($_GET['act'])) {
                 }
             }
             
-            
-            
             break;     
+            //Biểu đồ thống kê loại hàng
         case 'chartLH':
             $danhsachTKLH = list_thongKe_LH();
             include "thongKe/chartLH.php";
             
             break;
-        
-            case 'chartHH':
-                $danhsachTKHH = list_thongKe_HH();
-                include "thongKe/chartHH.php";
-                
-                break;
+            //biểu đồ thông kê hàng hóa
+        case 'chartHH':
+            $danhsachTKHH = list_thongKe_HH();
+            include "thongKe/chartHH.php";
+            
+            break;
         default:
             include "content.php";
             break;

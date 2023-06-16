@@ -36,8 +36,9 @@
                         <td><?php echo $ds["maHangHoa"] ?></td>
                         <td><?php echo $ds["ngayBinhLuan"] ?></td>
                         <td><?php echo $ds["noiDung"] ?></td>
-                        <td><a href="index.php?act=updateCMT&id=<?php echo $ds['maBinhLuan'] ?>">Sửa</a>|
-                            <a href="index.php?act=deleteCMT&id=<?php echo $ds['maBinhLuan'] ?>">Xóa</a>
+                        <td>
+                            <a href="index.php?act=deleteCMT&id=<?php echo $ds['maBinhLuan'] ?>">Xóa</a>|
+                            <a href="index.php?act=detailsCMT&id=<?php echo $ds['maBinhLuan'] ?>">Chi tiết</a>
                         </td>
                     </tr>
                     <?php

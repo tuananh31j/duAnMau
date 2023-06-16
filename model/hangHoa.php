@@ -15,7 +15,7 @@ function listHangHoa_ASC() {
 
 //danh sách hàng hóa mới nhất
 function listHangHoaMoiNhat() {
-    $sql = "select hangHoa.maHangHoa as maHangHoa, hangHoa.tenHangHoa as tenHangHoa, hangHoa.donGia as donGia, hangHoa.anh as anh, hangHoa.ngayNhap as ngayNhap, hangHoa.maLoai as maLoai, hangHoa.dacBiet as dacBiet, hangHoa.soLuotXem as soLuotXem, left(hangHoa.moTa, 60) as moTa, loai.tenLoai as tenLoai, hangHoa.giamGia as giamGia from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by maHangHoa desc";
+    $sql = "select hangHoa.maHangHoa as maHangHoa, hangHoa.tenHangHoa as tenHangHoa, hangHoa.donGia as donGia, hangHoa.anh as anh, hangHoa.ngayNhap as ngayNhap, hangHoa.maLoai as maLoai, hangHoa.dacBiet as dacBiet, hangHoa.soLuotXem as soLuotXem, left(hangHoa.moTa, 60) as moTa, loai.tenLoai as tenLoai, hangHoa.giamGia as giamGia from hangHoa inner join loai on loai.maLoai = hangHoa.maLoai order by maHangHoa desc limit 3";
     return pdo_query($sql);
     
 }
@@ -94,7 +94,7 @@ function selectHangHoa_id_name($kw = '',$id = 0) {
     return pdo_query($sql);
 }
 
-//update  lượt qua mỗi lần click
+//update  lượt xem qua mỗi lần click
 function luotXem($id,$count) {
     $sql = "update hangHoa set soLuotXem = $count where maHangHoa = $id";
     pdo_execute($sql);

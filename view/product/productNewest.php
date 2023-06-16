@@ -13,7 +13,7 @@
         <a
             href="index.php?act=detailsSP&id=<?php echo $product['maHangHoa'] ?>&luotXem=<?php echo $product['soLuotXem'] + 1; ?>">
             <div class="col">
-                <div style="height: 900px;" class="card">
+                <div style="height: 900px; width: 300px" class="card">
                     <img class="h-50" src="img/<?php echo $product['anh']?>" class="card-img-top"
                         alt="<?php echo $product['tenHangHoa']?>">
                     <div class="card-body">

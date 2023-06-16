@@ -7,18 +7,28 @@ if(isset($_COOKIE['rememberMe'])) {
  ?>
 
 <div class="form-sign">
-    <div>
+    <div class="ms-3" id="acc">
+        <p class="fa-solid fa-sort-down">
+        </p>
+    </div>
+    <div id="acchide">
         <div class="user">
             <P>*chưa đăng nhập*</P>
         </div>
         <form action="index.php" method="post">
             <label for="email">Email</label><br>
-            <input type="email" name="email"><br><br>
+            <div class="text-danger" class="form-text">
+                <?php echo isset($err['email'])?$err['email']:'' ?></div>
+            <input type="email" name="email">
+            <br><br>
             <label for="matKhau">Mật khẩu</label><br>
-            <input type="password" name="matKhau"><br><br>
+            <input type="password" name="matKhau">
+            <div class="text-danger" class="form-text">
+                <?php echo isset($err['matKhau'])?$err['matKhau']:'' ?></div>
+            <br><br>
             <label for="rememberMe">Ghi nhớ tài khoản?</label><br>
             <input type="checkbox" name="rememberMe" <?php echo $rememberMe ?> id=""><br><br>
-            <input type="submit" name="btn-dN" value="Đăng nhập">
+            <input class='btn bg-info' type="submit" name="btn-dN" value="Đăng nhập">
         </form>
         <hr>
 

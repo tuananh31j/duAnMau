@@ -25,14 +25,15 @@
                     <!-- title -->
                     <div class="title-header">
                         <a class="nav-link active" aria-current="page" href="index.php">
-                            <h1 class="text-light pb-5">Trang quản trị</h1>
+                            <h1 class="text-center text-light pb-5">Dashboard</h1>
                         </a>
                     </div>
 
                     <!-- menu -->
                     <ul class="nav flex-column pb-5">
                         <div><a class="nav-link  text-warning" href="../index.php">
-                                <h5>Trang người dùng</h5><span class="fa-solid fa-arrow-right text-warning"></span>
+                                <h5>Trang người dùng</h5><span><i
+                                        class="fa-solid fa-arrow-right text-warning"></i></span>
                             </a></div>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?act=listLH">Loại hàng</a>

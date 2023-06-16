@@ -57,13 +57,33 @@ if(isset($_GET['act'])) {
         
         // Trang đăng ký tài khoản
         case 'dangKy':
+            $err = [];
+            $user = [];
+            
             if(isset($_POST['btn-dk'])) {
-                $email= $_POST['email'];
-                $tenKhachHang= $_POST['tenKhachHang'];
-                $matKhau= $_POST['matKhau'];
-                addKhachHang($email,$tenKhachHang,$matKhau);
+                $user['email'] = isset($_POST['email'])?$_POST['email']:'';
+                $user['tenKhachHang'] = isset($_POST['tenKhachHang'])?$_POST['tenKhachHang']:'';
+                $user['matKhau'] = isset($_POST['matKhau'])?$_POST['matKhau']:'';
 
+                $checkEmail =  checkEmail($user['email']);
+                if($user['email'] == '') {
+                    $err['email'] = 'Chưa nhập email!';
+                }
+                elseif(isset($checkEmail) && is_array($checkEmail)) {
+                    $err['email'] = "Email đã tồn tại!";
+                }
+                if($user['tenKhachHang'] == '') {
+                    $err['tenKhachHang'] = 'Chưa nhập tenKhachHang!';
+                }
+                if($user['matKhau'] == '') {
+                    $err['matKhau'] = 'Chưa nhập matKhau!';
+                }else{
+                addKhachHang($user['email'],$user["tenKhachHang"],$user["matKhau"]);
                 $thongbao = 'Đăng ký thành công';
+                }
+               
+
+                
             }
             include 'view/account/dangKy.php';
             break;
@@ -76,7 +96,9 @@ if(isset($_GET['act'])) {
             
         //trang chỉnh sửa thông tin người dùng
         case 'userUpdate':
+           
                 if(isset($_POST['btn-userUpdate'])) {
+                    
                     $maKhachHang = $_SESSION['user']['maKhachHang'];
                     $tenKhachHang = $_POST['tenKhachHang'];
                     $matKhau = $_POST['matKhau'];
@@ -88,12 +110,17 @@ if(isset($_GET['act'])) {
                     }else{
                         $anh = $_SESSION['user']['anh'];
                     }
-                    $_SESSION['user']['tenKhachHang'] = $tenKhachHang;
+                    if($tenKhachHang == ''|| $email == ''|| $matKhau == '') {
+                        $noti = 'Không được để trống!';
+                    }else{
+                       $_SESSION['user']['tenKhachHang'] = $tenKhachHang;
                     $_SESSION['user']['email'] = $email;
                     $_SESSION['user']['matKhau'] = $matKhau;
                    
                     updateUser($tenKhachHang, $matKhau, $anh, $email, $maKhachHang);
-                    header("location: index.php");
+                    header("location: index.php"); 
+                    }
+                    
                 }
                 include 'view/account/userUpdate.php';
                 
@@ -101,22 +128,27 @@ if(isset($_GET['act'])) {
 
         //Trang quên mật khẩu
         case 'forgotPass':
+            $err = [];
+            $user = [];
             if(isset($_POST['btn-getPass'])) {
-                
-                $tenKhachHang = $_POST['tenKhachHang'];
-               
-                
-                $email = $_POST['email'];
-                $targetKH = getPass($tenKhachHang,$email);
-               
-                if(is_array($targetKH)) {
-                    $yourPass = $targetKH['matKhau'];
-                    
+                $user['email'] = isset($_POST['email'])?$_POST['email']:'';
+                $user['tenKhachHang'] = isset($_POST['tenKhachHang'])?$_POST['tenKhachHang']:'';
+                if($user['email'] == '') {
+                    $err['email'] = "Chứa nhập địa chỉ email!";
+                }if($user['tenKhachHang'] == '') {
+                    $err['tenKhachHang'] = 'Chưa điền tên khách hàng!';
                 }else{
-                    $yourPass = "Thông tin không hợp lệ";
+                    $email =  $user['email'];
+                    $tenKhachHang = $user['tenKhachHang'];
+                    $targetKH = getPass($tenKhachHang,$email);
+                    if(is_array($targetKH)) {
+                        $yourPass = $targetKH['matKhau'];
+                        
+                    }else{
+                        $yourPass = "Thông tin không hợp lệ";
+                    }
+                   
                 }
-                
-               
             }
             include 'view/account/forgotPass.php';
             
@@ -128,11 +160,18 @@ if(isset($_GET['act'])) {
 
     }
 }else{
+    $err = [];
     if(isset($_POST['btn-dN']) ) {
                
         $email= $_POST['email'];
         $matKhau= $_POST['matKhau'];
-        $checkDN =  checkUser($email,$matKhau);
+        if($email == '') {
+            $err['email'] = "Không được để trống!";
+        }
+        if($matKhau == '') {
+            $err['matKhau'] = "Không được để trống!";
+        }else{
+             $checkDN =  checkUser($email,$matKhau);
         if(is_array($checkDN)) {
             $_SESSION['user'] = $checkDN;
             
@@ -140,6 +179,8 @@ if(isset($_GET['act'])) {
         }else{
         $noti = "Thông tin sai!";
         }
+        }
+       
     }
     $top10LuotXem = top10LuotXem();
     $newProduct = listHangHoaMoiNhat();

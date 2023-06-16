@@ -78,7 +78,11 @@ function updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro,
     pdo_execute($sql, $tenKhachHang, $matKhau, $anh, $email ,$kichHoat , $vaiTro, $maKhachHang);
 }
 
-
+//danh sach email
+function checkEmail($email) {
+    $sql ="select * from khachHang where email = '$email'";
+    return pdo_query_one($sql);
+}
 
 
 ?>
