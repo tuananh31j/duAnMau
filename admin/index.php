@@ -22,8 +22,13 @@ if(isset($_GET['act'])) {
         case 'addLH':
             if(isset($_POST['btn-add'])) {
                 $tenLoai = $_POST['tenLoai'];
-                addLoaiHang($tenLoai);
+                if($tenLoai == '') {
+                    $err = 'Chưa điền tên loại!';
+                }else{
+                    addLoaiHang($tenLoai);
                 $noti = "Thêm thành công!";
+                }
+                
             }
             include "loaiHang/add.php";
             break;
@@ -52,8 +57,13 @@ if(isset($_GET['act'])) {
             if(isset($_POST['btn-update'])&&$_POST['btn-update']) {
                 $id = (int)$_POST['maLoai'];
                 $tenLoaiMoi= $_POST['tenLoai'];
+                if($tenLoaiMoi == '') {
+                    $err = "Không được để trống!";
+                }else{
                 updateLoaiHang($tenLoaiMoi, $id);
                 $noti = 'cập nhật thành công!';
+                }
+                
             }
             include "loaiHang/update.php";
             break;
@@ -96,20 +106,38 @@ if(isset($_GET['act'])) {
         //khách hàng
         //thêm khách hàng
         case 'addKH':
+            $err = [];
             if(isset($_POST['btn-add'])) {
                 $tenKhachHang = $_POST['tenKhachHang'];
                 $matKhau = $_POST['matKhau'];
                 $email = $_POST['email'];
+                $vaiTro = $_POST['vaiTro'];
                 if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh = $_FILES['anh']['name'];
                     move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
-                }else{
+                    }else{
                     $anh = 'anhcuaban.png';
+                        }
+                if($tenKhachHang == '' || $matKhau == '' || $email == '') {
+                    if($tenKhachHang == '') {
+                        $err['tenKH'] = 'Phải điền tên khách hàng!';
+                    }
+                    if($matKhau == '') {
+                        $err['mkKH'] = 'Phải có mật khẩu!';
+                    }
+                    if($email == '') {
+                        $err['email'] = 'Phải có email!';
+                    }
+                    if($vaiTro =='') {
+                        $err['vaiTro'] = 'cho biết vai trò!';
+                    }
+
+                }else{
+                     
+                    addKhachHang_ad($tenKhachHang, $matKhau, $email, $anh, $vaiTro);
+                    $noti = "Thêm thành công!";
                 }
-                
-                $vaiTro = $_POST['vaiTro'];
-                addKhachHang_ad($tenKhachHang, $matKhau, $email, $anh, $vaiTro);
-                $noti = "Thêm thành công!";
+               
             }
             include "khachHang/add.php";
             break;
@@ -127,28 +155,26 @@ if(isset($_GET['act'])) {
                 }elseif($_GET['btn'] == "btn_admin") {
                     $danhsachKH = listAdmin();
                 }
-                
-               
             }
                 include "KhachHang/list.php";
             break;
             //xóa khách hàng
         case 'deleteKH':
-        try{ 
-            if(isset($_POST['box']) && is_array($_POST['box'])) {
-                $checkedAll = $_POST['box'];
+                try{ 
+                    if(isset($_POST['box']) && is_array($_POST['box'])) {
+                        $checkedAll = $_POST['box'];
 
-                foreach($checkedAll as $checked) {
-                    deleteKhachHang($checked);
+                        foreach($checkedAll as $checked) {
+                            deleteKhachHang($checked);
+                        }
+                    }
+                        header("location: index.php?act=listKH");
+                    }catch(Exception $e) {
+                $err = "Có liên kết khóa ngoại không thể xóa!";
+                include "../err.php";
+                header("location: ../err.php");
                 }
-            }
-            header("location: index.php?act=listKH");
-        }catch(Exception $e) {
-        $err = "Có liên kết khóa ngoại không thể xóa!";
-        include "../err.php";
-        header("location: ../err.php");
-        }
-       try{
+            try{
              if(isset($_GET['id'])) {
                 
                 $id = $_GET['id'];
@@ -173,29 +199,52 @@ if(isset($_GET['act'])) {
             break;
             //chỉnh sửa thông tin khách hàng
         case 'updateKH':
-        
+            $err =[];
             if(isset($_GET['id'])) {
                 $id = (int)$_GET['id'];
                 $targetKH = selectKhachHang_id($id);
                 $_SESSION['updateUser'] = selectKhachHang_id($id);
             }
-            if(isset($_POST['btn-update'])&&$_POST['btn-update']) {
+            if(isset($_POST['btn-update'])) {
                 $maKhachHang = (int)$_POST['maKhachHang'];
                 $tenKhachHang= $_POST['tenKhachHang'];
                 $matKhau= $_POST['matKhau'];
                 $email= $_POST['email'];
                 $kichHoat= $_POST['kichHoat'];
                 $vaiTro= (int)$_POST['vaiTro'];
+               
+                
                 if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh= $_FILES['anh']['name'];
                     move_uploaded_file($_FILES['anh']['tmp_name'], "../img/$anh");
+                        }else{
+                            $anh = $_SESSION['updateUser']['anh'];
+                        }
+                 $_SESSION['updateUser']['tenKhachHang'] = $tenKhachHang;
+                $_SESSION['updateUser']['matKhau'] = $matKhau;
+                $_SESSION['updateUser']['email'] = $email;
+                $_SESSION['updateUser']['kichHoat'] = $kichHoat;
+                $_SESSION['updateUser']['vaiTro'] = $vaiTro;
+                $_SESSION['updateUser']['anh'] = $anh;
+                if($tenKhachHang == '' || $matKhau == '' || $email == '' || $kichHoat == '') {
+                    if($tenKhachHang == '') {
+                        $err['tenKH'] = 'Phải điền tên khách hàng!';
+                    }
+                    if($matKhau == '') {
+                        $err['mkKH'] = 'Phải có mật khẩu!';
+                    }
+                    if($email == '') {
+                        $err['email'] = 'Phải có email!';
+                    }
+                    if($kichHoat =='') {
+                            $err['status'] = 'cho biết trạng thái!';
+                    }
                 }else{
-                    $anh = $_SESSION['updateUser']['anh'];
-                }
-                
-               
-                updateUser_ad($tenKhachHang, $matKhau, $anh, $email,$kichHoat, $vaiTro, $maKhachHang);
-                $noti = 'cập nhật thành công!';
+                    updateUser_ad($tenKhachHang, $matKhau, $anh, $email, $kichHoat, $vaiTro, $maKhachHang);
+                       
+                        $noti = 'cập nhật thành công!';
+                        }
+                    
             }
             include "khachHang/update.php";
             break;
@@ -222,9 +271,11 @@ if(isset($_GET['act'])) {
 
             //thêm hàng hóa
         case 'addHH':
+            $err=[];
             $danhsachlh = listLoaiHang() ;
             if(isset($_POST['btn-add'])) {
                 $tenHangHoa = $_POST['tenHangHoa'];
+               
                 $donGia = $_POST['donGia'];
                
                 $ngayNhap = $_POST['ngayNhap'];
@@ -238,22 +289,46 @@ if(isset($_GET['act'])) {
                 }else{
                     $anh = 'default.png';
                 }
-                
-                
-                addHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia);
+                if($tenHangHoa == '' || $donGia == '' || $ngayNhap == '' || $Loai == '' || $moTa =='') {
+                    if($tenHangHoa == '') {
+                        $err['tenHH'] = 'Chưa nhập tên hàng hóa!';
+                    }
+                    if($donGia == '') {
+                        $err['donGia'] = 'Chưa nhập đơn giá!';
+                        
+                    }
+                    if($ngayNhap == '') {
+                        $err['ngayNhap'] = 'Chưa nhập ngày nhập hàng!';
+                        
+                    }
+                    if($Loai == '') {
+                        $err['loai'] = 'Chưa chọn loại hàng!';
+                        
+                    }
+                    if($moTa == '') {
+                        $err['moTa'] = 'Chưa nhập mô tả!';
+                        
+                    }
+                }else{
+                    addHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia);
                 $noti = "Thêm thành công!";
+                }
+          
+                
             }
             include "hangHoa/add.php";
             break;
                 //chỉnh sửa thông tin hàng hóa
         case 'updateHH':
+            $err =[];
+            $user = [];
             $danhsachlh = listLoaiHang() ;
             if(isset($_GET['id'])) {
                 $id = (int)$_GET['id'];
                 $targetHH = list_hang_hoa_id($id);
                 $_SESSION['pro'] = list_hang_hoa_id($id);
             }
-            if(isset($_POST['btn-update'])&& $_POST['btn-update']) {
+            if(isset($_POST['btn-update'])) {
                 $maHangHoa = (int)$_POST['maHangHoa'];
                 $tenHangHoa = $_POST['tenHangHoa'];
                 $donGia = $_POST['donGia'];
@@ -262,6 +337,10 @@ if(isset($_GET['act'])) {
                 $Loai = $_POST['tenLoai'];
                 $moTa = $_POST['moTa'];
                 $giamGia = $_POST['giamGia'];
+
+                
+          
+                
                 
                 if(isset($_FILES) && $_FILES['anh']['name'] != '') {
                     $anh = $_FILES['anh']['name'];
@@ -269,10 +348,36 @@ if(isset($_GET['act'])) {
                 }else{
                     $anh = $_SESSION['pro']['anh'];
                 }
+                if($tenHangHoa =='' || $donGia == '' || $ngayNhap =='' || $Loai == '' || $moTa =='') {
+                
+                    if($tenHangHoa == '') {
+                        $err['tenHH'] = 'Tên hàng hóa không được để trống!';
+                    }
+                    if($donGia == '') {
+                        $err['donGia'] = 'Chưa nhập đơn giá!';
+                        
+                    }
+                    if($ngayNhap == '') {
+                        $err['ngayNhap'] = 'Chưa nhập ngày nhập hàng!';
+                        
+                    }
+                    if($Loai == '') {
+                        $err['loai'] = 'Chưa chọn loại hàng!';
+                        
+                    }
+                    if($moTa == '') {
+                        $err['moTa'] = 'Chưa nhập mô tả!';
+                        
+                    }
+                }else{
+                    updateHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia, $maHangHoa);
+                  
+                   
+                    $noti = 'Cập nhật thành công!';
+                }
+                    
                 
                 
-                updateHangHoa($tenHangHoa, $donGia, $anh, $ngayNhap, $Loai, $moTa, $giamGia, $maHangHoa);
-                header("location: index.php?act=listHH");
             }
             include "hangHoa/update.php";
             break;

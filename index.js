@@ -91,3 +91,4 @@ btnCheckAll.addEventListener("click", checkAll);
 
 google.charts.setOnLoadCallback(drawChart);
 
+console.log(30);

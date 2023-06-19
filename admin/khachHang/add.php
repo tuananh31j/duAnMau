@@ -2,8 +2,9 @@
 <div class="col mt-5">
     <div class="mt5">
         <?php
-    if(isset($_POST['btn-add']))
-    echo $noti
+    if(isset($noti)) {
+        echo $noti;
+    }
     ?>
         <h1>thêm Khách hàng:</h1>
         <form action="index.php?act=addKH" enctype="multipart/form-data" method="post">
@@ -12,17 +13,26 @@
             <div class="mb-3">
                 <label for="tenKhachHang" class="form-label">Tên khách hàng</label>
                 <input type="text" name="tenKhachHang" placeholder="tên khách hàng" class="form-control">
+                <div>
+                    <p class="text-danger"><?php echo isset($err['tenKH'])?$err['tenKH']:'' ?></p>
+                </div>
 
             </div>
             <!-- mat khau -->
             <div class="mb-3">
                 <label for="matKhau" class="form-label">Mật khẩu</label>
                 <input type="password" name="matKhau" placeholder="Mật khẩu" class="form-control">
+                <div>
+                    <p class="text-danger"><?php echo isset($err['mkKH'])?$err['mkKH']:'' ?></p>
+                </div>
             </div>
             <!-- email -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" placeholder="email của bạn" class="form-control">
+                <div>
+                    <p class="text-danger"><?php echo isset($err['email'])?$err['email']:'' ?></p>
+                </div>
 
             </div>
             <!-- anh -->
@@ -35,6 +45,9 @@
             <div class="mb-3">
                 <label for="vaiTro" class="form-label">Vai trò</label>
                 <input type="text" name="vaiTro" placeholder="Vai trò" class="form-control">
+                <div>
+                    <p class="text-danger"><?php echo isset($err['vaiTro'])?$err['vaiTro']:'' ?></p>
+                </div>
 
             </div>
             <!-- btn -->
